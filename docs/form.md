@@ -1,8 +1,18 @@
 # 表单
 
-## input元素
+## input 元素
 
-input元素有`formaction`属性，用来强制当前表单跳转到指定的URL，而不是表单的`action`属性指定的URL。
+### required 属性
+
+`required`属性表示这个表单项是必填的。
+
+```html
+<input id="email" type="email" required>
+```
+
+### formaction 属性
+
+input元素有`formaction`属性，用来强制当前表单跳转到指定的 URL，而不是表单的`action`属性指定的URL。
 
 ```html
 <form action="http://e1.com">
