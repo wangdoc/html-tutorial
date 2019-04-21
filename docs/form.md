@@ -2,12 +2,61 @@
 
 ## input 元素
 
+### type 属性
+
+`type`属性指定输入框的类型。不同类型的输入框，对输入会产生不同的限制。
+
+- `email`：只能输入电子邮件地址。
+- `number`：只能输入数值。
+- `url`：只能输入网址。注意，不带有协议的网址是无效的，比如`foo.com`是无效的，`http://foo.com`是有效的。
+- `tel`：只能输入电话号码，由于全世界的电话号码格式都不相同，因此这个类型不是很有用，大多数时候需要自定义验证。
+
+### minlength 属性，maxlength 属性
+
+`minlength`属性指定输入框内容的最小长度，`maxlength`属性指定最大长度。
+
+```html
+<input type="text" id="uname" name="uname" minlength="4" maxlength="10">
+```
+
+### min 属性，max 属性
+
+`min`属性指定输入框内容的最小值，`max`属性指定最大值。通常，这两个属性与`number`类型配合使用。
+
+```html
+<input type="number" id="age" name="age" min="10" max="80" placeholder="30">
+```
+
+### pattern 属性
+
+`pattern`属性的值是一个正则表达式，确保输入框的内容符合这个表达式。
+
+```html
+<input type="text" id="uname" name="uname" pattern="[a-zA-Z0-9]+">
+```
+
+这个属性可以与`email`或`url`等类型结合使用，限制用户只能填入某些域的值。
+
+```html
+<input type="email" id="email" pattern=".+@foo.com|.+@bar.com">
+```
+
+上面代码限制邮件地址只是属于`foo.com`或`bar.com`。
+
 ### required 属性
 
 `required`属性表示这个表单项是必填的。
 
 ```html
 <input id="email" type="email" required>
+```
+
+### placeholder 属性
+
+`placeholder`属性指定输入框的占位符。
+
+```html
+<input type="number" id="age" name="age" min="10" max="80" placeholder="30">
 ```
 
 ### formaction 属性
