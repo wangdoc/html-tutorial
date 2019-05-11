@@ -1,35 +1,25 @@
-# 布局
+# 网页的语义结构
 
-## HTML5网页布局（Layout）
+HTML 标签的一个重要作用，就是声明网页元素的性质，使得用户只看标签，就能了解这个元素的意义，阅读 HTML 源码就能了解网页的大致结构。这被称为 HTML 的语义（semantic）原则。
 
-尽量使用语义标签。
-
-```html
-<main>
-  <article>
-    <header>
-      <h1>Blog post</h1>
-      <p>Published: <time datetime="2015-02-21">21st Feb, 2015</time></p>
-    </header>
-    <p>…</p>
-  </article>
-</main>
-```
-
-保持标签的简洁，属性不需要使用双引号。
+下面就是一个典型的语义结构的网页。
 
 ```html
-<!doctype html>
-<html lang=en>
-  <meta charset=utf-8>
-  <title>Contact</title>
-  <link rel=stylesheet href=style.css>
-
-  <h1>Contact me</h1>
-  <input type=email placeholder=you@email.com required>
-  <script src=main.js></script>
-</html>
+<body>
+  <header>页头</header>
+  <main>
+    <article>
+      <h1>文章标题</h1>
+      <p>文章内容</p>
+    </article>
+  </main>
+  <footer>页尾</footer>
+</body>
 ```
+
+只看上面的代码，就可以知道，页面分成页头、主体、页尾三个部分。
+
+编写 HTML 网页，第一步就是写出语义结构的网页骨架。
 
 ## HTML标签
 
