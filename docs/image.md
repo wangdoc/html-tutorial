@@ -1,5 +1,16 @@
 # 图像
 
+## `<figure>`，`<figcaption>`
+
+`<figure>`用于封装图像相关的内容，`<figcaption>`是它的子元素，表示图像的标题。
+
+```html
+<figure>
+  <img src="https://en.wikipedia.org/wiki/File:Shadow_of_Mordor_cover_art.jpg" alt="Shadow of Mordor" />
+  <figcaption>Cover art for Middle-earth: Shadow of Mordor</figcaption>
+</figure>
+```
+
 ## srcset 属性
 
 `<img>`标签的`srcset`属性，允许列出多个可用于替代的图片数据源，浏览器可以针对不同的用户设备，选择显示合适的图片。比如，在低速网络和小屏幕手机的情况下，应该为用户提供低像素的图片。
