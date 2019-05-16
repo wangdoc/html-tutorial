@@ -63,3 +63,23 @@ URL 分成两种：绝对 URL 和相对 URL。
 - `..`：表示上级目录，比如`../a.html`（上级目录下的`a.html`文件）
 
 这两个写法可以多个连用，比如`../../`表示上两级目录。
+
+## `<base>`
+
+`<base>`标签指定网页内部所有相对 URL 的计算基准。整张网页只能有一个`<base>`标签，而且只能放在`<head>`里面。它是单独使用的标签，没有闭合标签。
+
+```html
+<head>
+<base href="https://www.w3schools.com/images/" target="_blank">
+</head>
+```
+
+上面代码中，`href`属性给出计算的基准网址，`target`属性给出如何打开链接的说明。
+
+如果网页包含一个相对链接`<a href="foo.html">example</a>`，那么实际的链接如下。
+
+```html
+<a href="https://www.w3schools.com/images/foo.html" target="_blank">example</a>
+```
+
+注意，`<base>`标签必须具有`href`属性或`target`属性。
