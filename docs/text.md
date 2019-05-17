@@ -173,7 +173,23 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 `<i>`标签的语义不强，更接近是一个纯样式的标签，建议优先使用`<em>`标签代替它。
 
-## `<u>`
+## `<sub>`，`<sup>`，`<var>`
+
+`<sub>`标签将内容变为下标，`<sup>`标签将内容变为上标。它们都是行内元素，主要用于数学公式、分子式等。
+
+```html
+<p>水分子是 H<sub>2</sub>O。</p>
+```
+
+`<var>`标签表示代码或数学公式的变量。
+
+```html
+<p>勾股定理是
+  <var>a</var><sup>2</sup> + <var>b</var><sup>2</sup> = <var>c</var><sup>2</sup>
+。</p>
+```
+
+## `<u>`，`<s>`
 
 `<u>`标签是一个行内元素，表示具有跟当前文章无关的特别含义，基本上只用来表示拼写错误。浏览器默认以下划线渲染内容。
 
@@ -186,6 +202,14 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 上面代码中，`<u>`表示拼写错了。
 
 注意，由于链接默认带有下划线，所以必须非常小心使用`<u>`标签，避免用户认为可以点击。万一确有必要使用，最好使用 CSS 改变`<u>`的默认样式。
+
+`<s>`标签是一个行内元素，为内容加上删除线。
+
+```html
+<p>今天特价商品：<s>三文鱼</s>（售完）</p>
+```
+
+上面代码中，“三文鱼”会有一根删除线。
 
 ## `<blockquote>`，`<cite>`，`<q>`
 
@@ -227,6 +251,49 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 注意，浏览器默认会斜体显示`<q>`的内容，并且会自动加上半角的双引号。所以，引用中文内容时要小心。
 
+## `<code>`
+
+`<code>`标签是一个行内元素，表示标签内容是计算机代码，浏览器默认会以等宽字体显示。
+
+```html
+<code>alert()</code>的作用是让网页弹出一个提示框。
+```
+
+如果要表示多行代码，`<code>`标签必须放在`<pre>`内部。`<code>`本身仅表示一行代码。
+
+```html
+<pre>
+<code>
+  let a = 1;
+  console.log(a);
+</code>
+</pre>
+```
+
+## `<kbd>`，`<samp>`
+
+`<kbd>`标签是一个行内标签，原意是用户从键盘输入的内容，现在扩展到各种输入，包括语音输入。浏览器默认以等宽字体显示标签内容。
+
+```html
+<p>Windows 可以按下 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> 重启。</p>
+```
+
+`<kbd>`可以嵌套，方便指定样式。
+
+```html
+<p>Windows 可以按下
+<kbd> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> </kbd>
+重启。</p>
+```
+
+`<samp>`标签是一个行内元素，表示计算机程序输出内容的一个例子。浏览器默认以等宽字体显示。
+
+```html
+<p>如果使用没有定义的变量，浏览器会报错：
+<samp>Uncaught ReferenceError: foo is not defined</samp>。
+</p>
+```
+
 ## `<mark>`
 
 `<mark>`是一个行内标签，表示突出显示的内容。Chrome 浏览器默认会以亮黄色背景，显示该标签的内容。
@@ -256,7 +323,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 <p><small>以上内容使用创意共享许可证。</small></p>
 ```
 
-## `<time>`
+## `<time>`，`<data>`
 
 `<time>`是一个行内标签，为跟时间相关的内容提供机器可读的格式。
 
@@ -279,6 +346,14 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 ```html
 <p>音乐会在<time datetime="20:00">晚上八点</time>开始。</p>
 ```
+
+`<data>`标签与`<time>`类似，也是提供机器可读的内容，但是用于非时间的场合。
+
+```html
+<p>本次马拉松比赛第一名是<data value="39">张三</data></p>。
+```
+
+上面代码中，选手的机读数据就放在`<data>`标签的`value`属性。
 
 ## `<address>`
 
@@ -374,49 +449,6 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 </p>
 ```
 
-## `<code>`
-
-`<code>`标签是一个行内元素，表示标签内容是计算机代码，浏览器默认会以等宽字体显示。
-
-```html
-<code>alert()</code>的作用是让网页弹出一个提示框。
-```
-
-如果要表示多行代码，`<code>`标签必须放在`<pre>`内部。`<code>`本身仅表示一行代码。
-
-```html
-<pre>
-<code>
-  let a = 1;
-  console.log(a);
-</code>
-</pre>
-```
-
-## `<kbd>`，`<samp>`
-
-`<kbd>`标签是一个行内标签，原意是用户从键盘输入的内容，现在扩展到各种输入，包括语音输入。浏览器默认以等宽字体显示标签内容。
-
-```html
-<p>Windows 可以按下 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> 重启。</p>
-```
-
-`<kbd>`可以嵌套，方便指定样式。
-
-```html
-<p>Windows 可以按下
-<kbd> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> </kbd>
-重启。</p>
-```
-
-`<samp>`标签是一个行内元素，表示计算机程序输出内容的一个例子。浏览器默认以等宽字体显示。
-
-```html
-<p>如果使用没有定义的变量，浏览器会报错：
-<samp>Uncaught ReferenceError: foo is not defined</samp>。
-</p>
-```
-
 ## `<ruby>`，`<rp>`
 
 `<ruby>`用于表示东亚文字的语音，比如汉语拼音。它默认会以小字体，显示在文字的上方。`<ruby>`是一个行内元素，也是一个容器标签，内部还有许多配套的标签。
@@ -444,5 +476,23 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
   <rb>字</rb><rp>(</rp><rt>zi</rt><rp>)</rp>
 </rbc>
 </ruby>
+```
+
+## `<bdo>`，`<bdi>`
+
+大部分文字的阅读方向是从左到右，但是有些文字的方向是从右到左，比如阿拉伯语、希伯来语等。`<bdo>`标签是一个行内元素，表示文字方向与网页主体内容的方向不一致。
+
+```html
+<p>床前明月光，<bdo dir="rtl">霜上地是疑</bdo>。</p>
+```
+
+上面代码中，`<bdo>`标签里面的文字，会以相反的方向渲染，结果就是“床前明月光，疑是地上霜”。
+
+`<bdo>`的`dir`属性，指定具体的方向。它有两个值，`ltr`表示从左到右，`rtl`表示从右到左。
+
+`<bdi>`标签用于不确定文字方向的情况。比如，网页有一个部分是用户输入的内容，但是不知道输入内容的文字方向。这种情况就可以使用`<bdi>`标签，告诉浏览器，不确定文字的方向，由浏览器自己决定。
+
+```html
+<p><bdi>床前明月光，疑是地上霜。</bdi></p>
 ```
 
