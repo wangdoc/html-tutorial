@@ -223,7 +223,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 `<blockquote>`标签有一个`cite`属性，它的值是一个网址，表示引言来源。
 
-`<cite>`标签表示引言的标题或者作者，浏览器默认斜体显示这部分内容。
+`<cite>`标签表示引言来源的标题或者作者，浏览器默认斜体显示这部分内容。
 
 ```html
 <blockquote cite="https://quote.example.com">
@@ -272,7 +272,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 ## `<kbd>`，`<samp>`
 
-`<kbd>`标签是一个行内标签，原意是用户从键盘输入的内容，现在扩展到各种输入，包括语音输入。浏览器默认以等宽字体显示标签内容。
+`<kbd>`标签是一个行内元素，原意是用户从键盘输入的内容，现在扩展到各种输入，包括语音输入。浏览器默认以等宽字体显示标签内容。
 
 ```html
 <p>Windows 可以按下 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Del</kbd> 重启。</p>
@@ -395,7 +395,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 <abbr title="HyperText Markup Language">HTML</abbr>
 ```
 
-注意，某些浏览器可能为该标签提供虚线下划线。
+注意，某些浏览器可能为该标签提供圆点下划线。
 
 ## `<ins>`，`<del>`
 
