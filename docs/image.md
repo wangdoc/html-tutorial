@@ -2,14 +2,16 @@
 
 ## `<figure>`，`<figcaption>`
 
-`<figure>`用于封装图像相关的内容，`<figcaption>`是它的子元素，表示图像的标题。
+`<figure>`标签可以理解是一个图像区块，将图像和相关信息封装在一起。`<figcaption>`是它的可选的子元素，表示图像的标题。
 
 ```html
 <figure>
-  <img src="https://en.wikipedia.org/wiki/File:Shadow_of_Mordor_cover_art.jpg" alt="Shadow of Mordor" />
-  <figcaption>Cover art for Middle-earth: Shadow of Mordor</figcaption>
+  <img src="https://example.com/foo.jpg">
+  <figcaption>示例图片</figcaption>
 </figure>
 ```
+
+除了图像，`<figure>`还可以封装引言、代码、诗歌等等。它等于是一个将主体内容与附加信息，封装在一起的语义容器。
 
 ## srcset 属性
 
