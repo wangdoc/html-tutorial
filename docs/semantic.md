@@ -217,10 +217,6 @@ for (var i=0; i<labels.length; i++) {
 }
 ```
 
-### Main
-
-Main标签表示文档的主要部分。
-
 ### Meter
 
 Meter标签表示某个范围内的度量值。
@@ -242,10 +238,6 @@ Meter标签表示某个范围内的度量值。
 ```html
 Your batting average is <meter value=".340" min="0" max="1.000" low=".215" high=".367" optimum="1.000">.340</meter>
 ```
-
-### Nav
-
-Nav标签表示文档的导航部分，通常可以放在Header部分之中。
 
 ### Progress
 
