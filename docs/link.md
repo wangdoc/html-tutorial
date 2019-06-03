@@ -103,24 +103,29 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码的`rel`属性，说明链接是当前页面的帮助文档。
 
-`rel`属性有几个特殊值，具有特殊含义。
+`<a>`元素的`rel`属性的取值，有以下这些。
 
-- `rel="nofollow"`：告诉搜索引擎忽略该链接，主要用于用户提交的内容，防止有人企图通过添加链接，提高该链接的搜索排名。
-- `rel="noopener"`：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的`window.opener`属性引用原始窗口，这样就提高了安全性。
-- `rel="noreferrer"`：告诉浏览器打开链接时，不要将当前网址作为 HTTP 头信息的`Referer`字段发送出去，这样可以隐藏点击的来源。
+- alternate：当前文档的另一种形式，比如翻译。
+- author：作者链接。
+- bookmark：用作书签的永久地址。
+- external：当前文档的外部参考文档。
+- help：帮助链接。
+- license：许可证链接。
+- next：系列文档的下一篇。
+- nofollow：告诉搜索引擎忽略该链接，主要用于用户提交的内容，防止有人企图通过添加链接，提高该链接的搜索排名。
+- noreferrer：告诉浏览器打开链接时，不要将当前网址作为 HTTP 头信息的`Referer`字段发送出去，这样可以隐藏点击的来源。
+- noopener：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的`window.opener`属性引用原始窗口，这样就提高了安全性。
+- prev：系列文档的上一篇。
+- search：文档的搜索链接。
+- tag：文档的标签链接。
 
 **（6）referrerpolicy**
 
-`referrerpolicy`属性用于精确设定点击链接时，浏览器发送 HTTP 头信息的`Referer`字段的行为。该属性可以取下面几个值。
+`referrerpolicy`属性用于精确设定点击链接时，浏览器发送 HTTP 头信息的`Referer`字段的行为。
 
-- `no-referrer`：不发送`Referer`字段。
-- `no-referrer-when-downgrade`：如果链接不是 HTTPS 协议，就不发送`Referer`字段。这是默认行为。
-- `origin`：`Referer`字段只包括协议、域名和端口，不包括 URL 后面的部分，比如路径和查询字符串。
-- `origin-when-cross-origin`：如果链接与当前页面同源，`Referer`字段会包括全部信息，否则只包括协议、域名和端口。
-- `unsafe-url`：`Referer`字段只包括协议、域名、端口和路径，不包括其他部分。
-- `same-origin`：同源时，`Referer`字段给出完整 URL，否则就不发送该字段。
-- `strict-origin`：`Referer`字段只包含协议、域名和端口。但如果是从 HTTPS 页面打开 HTTP 页面，就不发送`Referer`字段。
-- `strict-origin-when-cross-origin`：同源时发送完整的`Referer`字段，跨域时只发送协议、域名和端口，如果是从 HTTPS 页面打开 HTTP 页面，就不发送`Referer`字段。
+该属性可以取下面八个值：`no-referrer`、`no-referrer-when-downgrade`、`origin`、`origin-when-cross-origin`、`unsafe-url`、`same-origin`、`strict-origin`、`strict-origin-when-cross-origin`。
+
+其中，`no-referrer`表示不发送`Referer`字段，`same-origin`表示同源时才发送`Referer`字段，`origin`表示只发送源信息（协议+域名+端口）。其他几项的解释，请查阅 HTTP 文档。
 
 **（7）ping**
 
@@ -225,4 +230,96 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 ```
 
 上面代码在手机中，点击链接会唤起拨号界面，可以直接拨打指定号码。
+
+## `<link>`
+
+`<link>`标签主要用于将当前网页与相关的外部资源联系起来，通常放在`<head>`元素里面。最常见的用途就是加载外部样式表。
+
+```html
+<link rel="stylesheet" type="text/css" href="theme.css">
+```
+
+上面代码为网页加载样式表`theme.css`。
+
+HTML 允许一张网页有多个样式表，其中一张默认生效，其他几张可供用户切换，通过`title`属性区分。
+
+```html
+<link href="default.css" rel="stylesheet" title="Default Style">
+<link href="fancy.css" rel="alternate stylesheet" title="Fancy">
+<link href="basic.css" rel="alternate stylesheet" title="Basic">
+```
+
+上面代码中，`default.css`是默认样式表，`fancy.css`和`basic.css`是替换样式表。用户可以在浏览器菜单里面，看到这些样式表的名字，可以选择希望哪一张生效。
+
+下面是加载图标文件的写法。
+
+```html
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+```
+
+`<link>`标签可以指定手机在不同分辨率情况下使用的图标。
+
+```html
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon72.png">
+```
+
+上面代码指定 iPhone 设备需要的114像素和72像素的图标。
+
+`media`属性给出外部资源生效的媒介条件。
+
+```html
+<link href="print.css" rel="stylesheet" media="print">
+<link href="mobile.css" rel="stylesheet" media="screen and (max-width: 600px)">
+```
+
+上面代码中，打印时加载`print.css`，移动设备访问时（设备宽度小于600像素）加载`mobile.css`。
+
+`<link>`也用于提供文档的相关链接信息，比如下面是给出文档 RSS Feed 的信息。
+
+```html
+<link rel="alternate" type="application/atom+xml" href="/blog/news/atom">
+```
+
+`rel`属性表示外部资源与当前文档的关系，是`<link>`标签的必有属性。它可以取以下值。
+
+- alternate：文档的另一种表现形式的链接，比如打印版。
+- author：文档作者的链接。
+- dns-prefetch：要求浏览器提前执行指定网址的 DNS 查询。
+- help：帮助文档的链接。
+- icon：加载文档的图标文件。
+- license：许可证链接。
+- next：系列文档下一篇的链接。
+- pingback：接收当前文档 pingback 请求的网址。
+- preconnect：要求浏览器提前与给定服务器，建立 HTTP 连接。
+- prefetch：要求浏览器提前下载并缓存指定资源，优先级较低，浏览器可以不下载。
+- preload：要求浏览器提前下载并缓存指定资源，优先级较高，浏览器必须下载。
+- prerender：要求浏览器提前渲染指定链接。这样的话，用户稍后打开该链接，就会立刻显示，感觉非常快。
+- prev：表示当前文档是系列文档的一篇，这里给出上一篇文档的链接。
+- search：提供当前网页的搜索链接。
+- stylesheet：加载一张样式表。
+
+下面是`rel="preload"`的一些例子。
+
+```html
+<link rel="preload" href="style.css" as="style">
+<link rel="preload" href="main.js" as="script">
+```
+
+上面代码要求浏览器提前下载并缓存`style.css`和`main.js`。
+
+配合使用的`as`属性，告诉浏览器这些资源的类型，以便正确处理。有时还需要`type`属性，进一步明确 MIME 类型。
+
+```html
+<link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">
+```
+
+上面代码要求浏览器提前下载视频文件，并且说明这是 MP4 编码。
+
+`<link>`标签的其他属性如下。
+
+- crossorigin：加载外部资源的跨域设置。
+- href：外部资源的网址。
+- referrerpolicy：加载时`Referer`头信息字段的处理方法。
+- type：外部资源的 MIME 类型。
 
