@@ -233,7 +233,9 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 ## `<link>`
 
-`<link>`标签主要用于将当前网页与相关的外部资源联系起来，通常放在`<head>`元素里面。最常见的用途就是加载外部样式表。
+### 基本用法
+
+`<link>`标签主要用于将当前网页与相关的外部资源联系起来，通常放在`<head>`元素里面。最常见的用途就是加载样式表。
 
 ```html
 <link rel="stylesheet" type="text/css" href="theme.css">
@@ -241,7 +243,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码为网页加载样式表`theme.css`。
 
-HTML 允许一张网页有多个样式表，其中一张默认生效，其他几张可供用户切换，通过`title`属性区分。
+除了默认样式表，网页还可以加载替代样式表，即默认情况不生效、需要用户手动切换的样式表。
 
 ```html
 <link href="default.css" rel="stylesheet" title="Default Style">
@@ -249,15 +251,15 @@ HTML 允许一张网页有多个样式表，其中一张默认生效，其他几
 <link href="basic.css" rel="alternate stylesheet" title="Basic">
 ```
 
-上面代码中，`default.css`是默认样式表，`fancy.css`和`basic.css`是替换样式表。用户可以在浏览器菜单里面，看到这些样式表的名字，可以选择希望哪一张生效。
+上面代码中，`default.css`是默认样式表，默认就会生效。`fancy.css`和`basic.css`是替换样式表（`rel="alternate stylesheet"`），默认情况下不生效。`title`属性这时是必需的，会列在浏览器菜单里面，供用户选择，以替代默认样式表。
 
-下面是加载图标文件的写法。
+`<link>`还可以加载网站的 favicon 图标文件。
 
 ```html
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 ```
 
-`<link>`标签可以指定手机在不同分辨率情况下使用的图标。
+手机访问时，网站通常需要提供不同分辨率使用的图标文件。
 
 ```html
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon114.png">
@@ -265,6 +267,14 @@ HTML 允许一张网页有多个样式表，其中一张默认生效，其他几
 ```
 
 上面代码指定 iPhone 设备需要的114像素和72像素的图标。
+
+`<link>`也用于提供文档的相关链接，比如下面是给出文档的 RSS Feed 地址，具体解释见后文。
+
+```html
+<link rel="alternate" type="application/atom+xml" href="/blog/news/atom">
+```
+
+### media 属性
 
 `media`属性给出外部资源生效的媒介条件。
 
@@ -275,29 +285,25 @@ HTML 允许一张网页有多个样式表，其中一张默认生效，其他几
 
 上面代码中，打印时加载`print.css`，移动设备访问时（设备宽度小于600像素）加载`mobile.css`。
 
-`<link>`也用于提供文档的相关链接信息，比如下面是给出文档 RSS Feed 的信息。
+### rel 属性
 
-```html
-<link rel="alternate" type="application/atom+xml" href="/blog/news/atom">
-```
+`rel`属性表示外部资源与当前文档之间的关系，是`<link>`标签的必需属性。它可以但不限于取以下值。
 
-`rel`属性表示外部资源与当前文档的关系，是`<link>`标签的必有属性。它可以取以下值。
-
-- alternate：文档的另一种表现形式的链接，比如打印版。
-- author：文档作者的链接。
-- dns-prefetch：要求浏览器提前执行指定网址的 DNS 查询。
-- help：帮助文档的链接。
-- icon：加载文档的图标文件。
-- license：许可证链接。
-- next：系列文档下一篇的链接。
-- pingback：接收当前文档 pingback 请求的网址。
-- preconnect：要求浏览器提前与给定服务器，建立 HTTP 连接。
-- prefetch：要求浏览器提前下载并缓存指定资源，优先级较低，浏览器可以不下载。
-- preload：要求浏览器提前下载并缓存指定资源，优先级较高，浏览器必须下载。
-- prerender：要求浏览器提前渲染指定链接。这样的话，用户稍后打开该链接，就会立刻显示，感觉非常快。
-- prev：表示当前文档是系列文档的一篇，这里给出上一篇文档的链接。
-- search：提供当前网页的搜索链接。
-- stylesheet：加载一张样式表。
+- `alternate`：文档的另一种表现形式的链接，比如打印版。
+- `author`：文档作者的链接。
+- `dns-prefetch`：要求浏览器提前执行指定网址的 DNS 查询。
+- `help`：帮助文档的链接。
+- `icon`：加载文档的图标文件。
+- `license`：许可证链接。
+- `next`：系列文档下一篇的链接。
+- `pingback`：接收当前文档 pingback 请求的网址。
+- `preconnect`：要求浏览器提前与给定服务器，建立 HTTP 连接。
+- `prefetch`：要求浏览器提前下载并缓存指定资源，供下一个页面使用。它的优先级较低，浏览器可以不下载。
+- `preload`：要求浏览器提前下载并缓存指定资源，当前页面稍后就会用到。它的优先级较高，浏览器必须立即下载。
+- `prerender`：要求浏览器提前渲染指定链接。这样的话，用户稍后打开该链接，就会立刻显示，感觉非常快。
+- `prev`：表示当前文档是系列文档的一篇，这里给出上一篇文档的链接。
+- `search`：提供当前网页的搜索链接。
+- `stylesheet`：加载一张样式表。
 
 下面是`rel="preload"`的一些例子。
 
@@ -308,7 +314,9 @@ HTML 允许一张网页有多个样式表，其中一张默认生效，其他几
 
 上面代码要求浏览器提前下载并缓存`style.css`和`main.js`。
 
-配合使用的`as`属性，告诉浏览器这些资源的类型，以便正确处理。有时还需要`type`属性，进一步明确 MIME 类型。
+配合使用的`as`属性，告诉浏览器这些资源的类型，以便正确处理。
+
+有时还需要`type`属性，进一步明确 MIME 类型。
 
 ```html
 <link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">
@@ -316,10 +324,15 @@ HTML 允许一张网页有多个样式表，其中一张默认生效，其他几
 
 上面代码要求浏览器提前下载视频文件，并且说明这是 MP4 编码。
 
+### 其他属性
+
 `<link>`标签的其他属性如下。
 
-- crossorigin：加载外部资源的跨域设置。
-- href：外部资源的网址。
-- referrerpolicy：加载时`Referer`头信息字段的处理方法。
-- type：外部资源的 MIME 类型。
+- `crossorigin`：加载外部资源的跨域设置。
+- `href`：外部资源的网址。
+- `referrerpolicy`：加载时`Referer`头信息字段的处理方法。
+- `as`：`rel="preload"`或`rel="prefetch"`时，设置外部资源的类型。
+- `type`：外部资源的 MIME 类型，目前仅用于`rel="preload"`或`rel="prefetch"`的情况。
+- `title`：加载样式表时，用来标识样式表的名称。
+- `sizes`：用来声明图标文件的尺寸，比如加载苹果手机的图标文件。
 
