@@ -58,40 +58,7 @@
 
 **（3）srcset，sizes**
 
-`srcset`属性设定同一张图片的多个版本，用于不同环境的浏览器使用。比如，桌面浏览器下载桌面版本的图片，手机浏览器下载手机版本的图片，这样有利于提高网页的性能，节省带宽。
-
-`srcset`属性的值是多个图片网址，每个之间使用逗号分隔。
-
-```html
-<img srcset="foo-320w.jpg,
-             foo-480w.jpg 1.5x,
-             foo-640w.jpg 2x"
-     src="foo-640w.jpg">
-```
-
-上面代码中，`srcset`属性设置三张图片的网址，它们之间使用逗号分隔。
-
-每个图片网址后面还带有一个说明符，两者之间是一个空格。说明符有两种格式，一种是像素密度+字母`x`，比如`1x`、`2x`，就像上例。如果省略了说明符，默认为`1x`。另一种是图片文件的实际宽度（单位像素）+ 字母`w`。两种说明符只能选择一种格式，不能两者同时设置。
-
-第一种格式的情况下，浏览器会根据当前设备的像素密度，选择对应的图片。上例中，如果当前设备是`2x`的高分辨率屏幕，那么就会加载`foo-640w.jpg`这个文件。如果实际的像素密度不在`srcset`属性指定的范围内，那么将加载`src`属性指定的默认图片文件。
-
-除了高分辨率屏幕，更多的情况是设备的屏幕大小不同，这时就需要第二张格式，并且需要配合`sizes`属性一起使用。
-
-```html
-<img srcset="foo-320w.jpg 320w,
-             foo-480w.jpg 480w,
-             foo-800w.jpg 800w"
-     sizes="(max-width: 320px) 280px,
-            (max-width: 480px) 440px,
-            800px"
-     src="foo-800w.jpg">
-```
-
-第二种格式的情况下，浏览器先查看`sizes`属性。`sizes`属性也由多个逗号分隔的字符串组成，除了最后一部分，每一个字符串的前面部分都是“媒体查询条件+空格+图片宽度”的形式，最后一部分则只有图片宽度，匹配所有其他情况。
-
-如果当前设备的屏幕宽度在320像素到480像素之间，那么符合`sizes`属性的第二个条件，浏览器由此得知图片宽度应为440像素。然后，浏览器检查`srcset`属性，发现最符合440像素的图片，是`480w`那一档的`foo-800w.jpg`。如果没有符合条件的图片，那么将加载`src`属性指定的默认图片。
-
-注意，如果没有`srcset`属性，`sizes`属性无效。
+详见下文的《响应式图像》部分。
 
 **（4）referrerpolicy**
 
@@ -133,71 +100,163 @@
 
 除了图像，`<figure>`还可以封装引言、代码、诗歌等等。它等于是一个将主体内容与附加信息，封装在一起的语义容器。
 
-## srcset 属性
+## 响应式图像
 
-`<img>`标签的`srcset`属性，允许列出多个可用于替代的图片数据源，浏览器可以针对不同的用户设备，选择显示合适的图片。比如，在低速网络和小屏幕手机的情况下，应该为用户提供低像素的图片。
+网页在不同尺寸的设备上，都有良好的显示效果，叫做[“响应式设计”](http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html)（responsive web design）。响应式设计的网页图像，就是“响应式图像”（responsive image）。
 
-`srcset`属性接受一个用逗号分隔的 URL 列表，每个 URL 后面带有`x`字符串，表示适用的图片像素比。
+响应式图像的解决方案有很多，JavaScript 和 CSS 都可以实现。这里只介绍语义性最好的 HTML 方法，浏览器原生支持。
 
-```html
-<img src="images/low-res.jpg" srcset="
-  images/low-res.jpg 1x,
-  images/high-res.jpg 2x,
-  images/ultra-high-res.jpg 3x"
->
-```
+### 问题的由来
 
-上面代码中，如果用户设备的图片像素比是`1`，浏览器显示`low-res.jpg`；如果是`2`，浏览器显示`high-res.jpg`；如果是`3`，浏览器显示`ultra-high-res.jpg`。
-
-除了`x`字符串，还可以使用`w`字符串，表示图片的宽度（单位为像素）。
-
-```javascript
-<img src="images/low-res.jpg" srcset="
-  images/low-res.jpg 500w,
-  images/high-res.jpg 1000w,
-  images/ultra-high-res.jpg 2000w"
->
-```
-
-上面代码中，`low-res.jpg`的宽度是500像素，`high-res.jpg`是1000像素，`ultra-high-res.jpg`是2000像素。现在有一个`320px`宽度和`1x`设备像素比（即非 retina）的设备，浏览器会进行下面的计算。
-
-```
-500 / 320 = 1.5625
-1000 / 320 = 3.125
-2000 / 320 = 6.25
-```
-
-上面代码中，`1.5626`最接近设备像素比`1x`，所以展示`low-res.jpg`。如果是`2x`设备像素比，`3.125`最接近这个值，所以显示`high-res.jpg`。
-
-## sizes 属性
-
-`sizes`属性用于根据设备的不同，显示不同宽度的图像。
+我们知道，`<img>`标签用于插入网页图像，所有情况默认插入的都是同一张图像。
 
 ```html
-<img src="images/low-res.jpg" sizes="(max-width: 40em) 100vw, 50vw">
+<img src="foo.jpg">
 ```
 
-上面代码中，视口宽度小于`40em`时，图片显示的宽度为`100vw`；否则，显示的宽度为`50vw`。
+上面代码在桌面端和手机上，插入的都是图像文件`foo.jpg`。
 
-## picture 标签
+这种处理方法固然简单，但是有三大弊端。
 
-`srcset`属性主要用于，不同宽度的设备显示同一张图片的不同版本。如果想根据不同的设备，使用不同的图片，就应该使用`<picture>`标签。
+**（1）体积**
 
-`<picture>`指定多个不同`<source>`元素，来为不同尺寸的屏幕定义不同的图片。
+一般来说，桌面端显示的是大尺寸的图像，文件体积较大。手机的屏幕较小，只需要小尺寸的图像，可以节省带宽，加速网页渲染。
+
+**（2）像素密度**
+
+桌面显示器一般是单倍像素密度，而手机的显示屏往往是多倍像素密度，即多个像素合成为一个像素，称为 Retina 屏幕。图像文件很可能在桌面端很清晰，放到手机上会有点模糊，因为像素扩充了。
+
+**（3）视觉风格**
+
+桌面显示器的面积较大，图像可以容纳更多细节。手机的屏幕较小，许多细节是看不清的，需要突出重点。
+
+![](https://www.wangbase.com/blogimg/asset/201906/bg2019061002.jpg)
+
+![](https://www.wangbase.com/blogimg/asset/201906/bg2019061003.jpg)
+
+上面两张图片，下方的手机图片经过裁剪以后，更突出图像重点，明显效果更好。
+
+### `srcset`属性
+
+为了解决上面这些问题，HTML 语言提供了一套完整的解决方案。首先，`<img>`标签引入了`srcset`属性。
+
+`srcset`属性用来指定多张图像，适应不同像素密度的屏幕。它的值是一个逗号分隔的字符串，每个部分都是一张图像的 URL，后面接一个空格，然后是像素密度的描述符。请看下面的例子。
+
+```html
+<img srcset="foo-320w.jpg,
+             foo-480w.jpg 1.5x,
+             foo-640w.jpg 2x"
+     src="foo-640w.jpg">
+ ```
+
+上面代码中，`srcset`属性给出了三个图像 URL，适应三种不同的像素密度。
+
+图像 URL 后面的像素密度描述符，格式是像素密度倍数 + 字母`x`。`1x`表示单倍像素密度，可以省略。浏览器根据当前设备的像素密度，选择需要加载的图像。
+
+如果`srcset`属性都不满足条件，那么就加载`src`属性指定的默认图像。
+
+### `sizes`属性
+
+像素密度的适配，只适合显示区域一样大小的图像。如果希望不同尺寸的屏幕，显示不同大小的图像，`srcset`属性就不够用了，必须搭配`sizes`属性。
+
+第一步，`srcset`属性列出所有可用的图像。
+
+```html
+<img srcset="foo-160.jpg 160w,
+             foo-320.jpg 320w,
+             foo-640.jpg 640w,
+             foo-1280.jpg 1280w"
+     src="foo-1280.jpg">
+```
+
+上面代码中，`srcset`属性列出四张可用的图像，每张图像的 URL 后面是一个空格，再加上宽度描述符。
+
+宽度描述符就是图像原始的宽度，加上字符`w`。上例的四种图片的原始宽度分别为160像素、320像素、640像素和1280像素。
+
+第二步，`sizes`属性列出不同设备的图像显示宽度。
+
+`sizes`属性的值是一个逗号分隔的字符串，除了最后一部分，前面每个部分都是一个放在括号里面的媒体查询表达式，后面是一个空格，再加上图像的显示宽度。
+
+```html
+<img srcset="foo-160.jpg 160w,
+             foo-320.jpg 320w,
+             foo-640.jpg 640w,
+             foo-1280.jpg 1280w"
+     sizes="(max-width: 440px) 100vw,
+            (max-width: 900px) 33vw,
+            254px"
+     src="foo-1280.jpg">
+```
+
+上面代码中，`sizes`属性给出了三种屏幕条件，以及对应的图像显示宽度。宽度不超过440像素的设备，图像显示宽度为100%；宽度441像素到900像素的设备，图像显示宽度为33%；宽度900像素以上的设备，图像显示宽度为`254px`。
+
+第三步，浏览器根据当前设备的宽度，从`sizes`属性获得图像的显示宽度，然后从`srcset`属性找出最接近该宽度的图像，进行加载。
+
+假定当前设备的屏幕宽度是`480px`，浏览器从`sizes`属性查询得到，图片的显示宽度是`33vw`（即33%），等于`160px`。`srcset`属性里面，正好有宽度等于`160px`的图片，于是加载`foo-160.jpg`。
+
+如果省略`sizes`属性，那么浏览器将根据实际的图像显示宽度，从`srcset`属性选择最接近的图片。另一方面，`sizes`属性必须与`srcset`属性搭配使用，单独使用`sizes`属性是无效的。
+
+## `<picture>`
+
+### 响应式用法
+
+`<img>`标签的`srcset`属性和`sizes`属性分别解决了像素密度和屏幕大小的适配，但如果要同时适配不同像素密度、不同大小的屏幕，就要用到`<picture>`标签。
+
+`<picture>`是一个容器标签，内部使用`<source>`和`<img>`，指定不同情况下加载的图像。
 
 ```html
 <picture>
-  <source media="(max-width: 20em)" srcset="
-    images/small/low-res.jpg 1x,
-    images/small/high-res.jpg 2x,
-    images/small/ultra-high-res.jpg 3x
-  ">
-  <source media="(max-width: 40em)" srcset="
-    images/large/low-res.jpg 1x,
-    images/large/high-res.jpg 2x,
-    images/large/ultra-high-res.jpg 3x
-  ">
-
-  <img src="images/large/low-res.jpg">
+  <source media="(max-width: 500px)" srcset="cat-vertical.jpg">
+  <source media="(min-width: 501px)" srcset="cat-horizontal.jpg">
+  <img src="cat.jpg" alt="cat">
 </picture>
 ```
+
+上面代码中，`<picture>`标签内部有两个`<source>`标签和一个`<img>`标签。
+
+`<picture>`内部的`<source>`标签，主要使用`media`属性和`srcset`属性。`media`属性给出媒体查询表达式，`srcset`属性就是`<img>`标签的`srcset`属性，给出加载的图像文件。`sizes`属性其实这里也可以用，但由于有了`media`属性，就没有必要了。
+
+浏览器按照`<source>`标签出现的顺序，依次判断当前设备是否满足`media`属性的媒体查询表达式，如果满足就加载`srcset`属性指定的图片文件，并且不再执行后面的`<source>`标签和`<img>`标签。
+
+`<img>`标签是默认情况下加载的图像，用来满足上面所有`<source>`都不匹配的情况。
+
+上面例子中，设备宽度如果不超过`500px`，就加载竖屏的图像，否则加载横屏的图像。
+
+下面给出一个例子，同时考虑屏幕尺寸和像素密度的适配。
+
+```html
+<picture>
+  <source srcset="homepage-person@desktop.png,
+                  homepage-person@desktop-2x.png 2x"       
+          media="(min-width: 990px)">
+  <source srcset="homepage-person@tablet.png,
+                  homepage-person@tablet-2x.png 2x" 
+          media="(min-width: 750px)">
+  <img srcset="homepage-person@mobile.png,
+               homepage-person@mobile-2x.png 2x" 
+       alt="Shopify Merchant, Corrine Anestopoulos">
+</picture>
+```
+
+上面代码中，`<source>`标签的`media`属性给出屏幕尺寸的适配条件，每个条件都用`srcset`属性，再给出两种像素密度的图像 URL。
+
+### 图像格式的选择
+
+除了响应式图像，`<picture>`标签还可以用来选择不同格式的图像。比如，如果当前浏览器支持 Webp 格式，就加载这种格式的图像，否则加载 PNG 图像。
+
+```html
+<picture>
+  <source type="image/svg+xml" srcset="logo.xml">
+  <source type="image/webp" srcset="logo.webp"> 
+  <img src="logo.png" alt="ACME Corp">
+</picture>
+```
+
+上面代码中，`<source>`标签的`type`属性给出图像的 MIME 类型，`srcset`是对应的图像 URL。
+
+浏览器按照`<source>`标签出现的顺序，依次检查是否支持`type`属性指定的图像格式，如果支持就加载图像，并且不再检查后面的`<source>`标签了。上面例子中，图像加载优先顺序依次为 svg 格式、webp 格式和 png 格式。
+
+## 参考链接
+
+- [Responsive Images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/), Jason Grigsby
+- [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), MDN
