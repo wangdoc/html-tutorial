@@ -108,3 +108,85 @@ HTML 标准没有规定浏览器需要支持哪些视频格式，完全由浏览
 - `media`：指定媒体查询表达式，用于`<picture>`。
 - `sizes`：指定不同设备的显示大小，用于`<picture>`，必须跟`srcset`搭配使用。
 
+## `<embed>`
+
+`<embed>`标签用于嵌入外部内容，这个外部内容通常由浏览器插件负责控制。由于浏览器的默认插件都不一致，很可能用户无法访问这部分内容，建议谨慎使用。
+
+下面是嵌入视频播放器的例子。
+
+```html
+<embed type="video/webm"
+       src="/media/examples/flower.mp4"
+       width="250"
+       height="200">
+```
+
+上面代码嵌入的视频，将由浏览器插件负责控制。如果浏览器没有安装 MP4 插件，视频就无法播放。
+
+`<embed>`标签具有如下的通用属性。
+
+- `height`：显示高度，单位为像素，不允许百分比。
+- `weight`：显示宽度，单位为像素，不允许百分比。
+- `src`：嵌入的资源的 URL。
+- `type`：嵌入资源的 MIME 类型。
+
+浏览器通过`type`属性得到嵌入资源的 MIME 类型，一旦该种类型已经被某个插件注册了，就会启动该插件负责处理嵌入的资源。
+
+下面是 QuickTime 插件播放`。mov`视频文件的例子。
+
+```html
+<embed type="video/quicktime" src="movie.mov" width="640" height="480">
+```
+
+下面是启动 Flash 插件的例子。
+
+```html
+<embed src="whoosh.swf" quality="medium"
+       bgcolor="#ffffff" width="550" height="400"
+       name="whoosh" align="middle" allowScriptAccess="sameDomain"
+       allowFullScreen="false" type="application/x-shockwave-flash"
+       pluginspage="http://www.macromedia.com/go/getflashplayer">
+```
+
+上面代码中，如果浏览器没有安装 Flash 插件，就会提示去`pluginspage`属性指定的网址下载。
+
+## `<object>`
+
+`<object>`标签作用跟`<embed>`相似，也是插入外部资源，由浏览器插件处理。它可以视为`<embed>`的替代品，有标准化行为，只限于插入少数几种通用资源，没有历史遗留问题，因此更推荐使用。
+
+下面是插入 PDF 文件的例子。
+
+```html
+<object type="application/pdf"
+    data="/media/examples/In-CC0.pdf"
+    width="250"
+    height="200">
+</object>
+```
+
+上面代码中，如果浏览器安装了 PDF 插件，就会在网页显示 PDF 浏览窗口。
+
+`<object>`具有如下的通用属性。
+
+- `data`：嵌入的资源的 URL。
+- `form`：当前网页中相关联表单的`id`属性（如果有的话）。
+- `height`：资源的显示高度，单位为像素，不能使用百分比。
+- `weight`：资源的显示宽度，单位为像素，不能使用百分比。
+- `type`：资源的 MIME 类型。
+- `typemustmatch`：布尔属性，表示`data`属性与`type`属性是否必须匹配。
+
+下面是插入 Flash 影片的例子。
+
+```html
+<object data="movie.swf"
+  type="application/x-shockwave-flash"></object>
+```
+
+`<object>`标签是一个容器元素，内部可以使用`<param>`标签给出，插件所需要的运行参数。
+
+```html
+<object data="movie.swf" type="application/x-shockwave-flash">
+  <param name="foo" value="bar">
+</object>
+```
+
