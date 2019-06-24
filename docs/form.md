@@ -1,12 +1,12 @@
 # 表单
 
-## 概述
-
 表单（form）是用户输入信息，与网页互动的一种形式。大多数情况下，用户提交的信息会发给服务器，比如网站的搜索栏就是表单。
 
 表单由一种或多种的小部件组成，比如输入框、按钮、单选框或复选框。这些小部件称为控件（controls）。
 
-表单由`<form>`标签定义，所有表单内容放到这个容器元素之中。
+## `<form>`
+
+`<form>`标签用来定义一个表单，所有表单内容放到这个容器元素之中。
 
 ```html
 <form>
@@ -16,9 +16,32 @@
 
 上面代码就是表单的基本形式。
 
-## 表单控件
+`<form>`有以下属性。
 
-### `<button>`
+- `accept-charset`：服务器接受的字符编码列表，使用空格分隔，默认与网页编码相同。
+- `action`：服务器接收数据的 URL。
+- `autocomplete`：如果用户没有填写某个控件，浏览器是否可以自动填写该值。它的可能取值分别为`off`（不自动填写）和`on`（自动填写）。
+- `method`：提交数据的 HTTP 方法，可能的值有`post`（表单数据作为 HTTP 数据体发送），`get`（表单数据作为 URL 的查询字符串发送），`dialog`（表单位于`<dialog>`内部使用）。
+- `enctype`：当`method`属性等于`post`时，该属性指定提交给服务器的 MIME。可能的值为`application/x-www-form-urlencoded`（默认值），`multipart/form-data`（文件上传的情况），`text/plain`。
+- `name`：表单的名称，应该在网页中是唯一的。
+- `novalidate`：布尔属性，表单提交时是否取消验证。
+- `target`：在哪个窗口展示服务器返回的数据，可能的值有`_self`（当前窗口），`_blank`（新建窗口），`_parent`（父窗口），`_top`（顶层窗口），`<iframe>`标签的`name`属性（即表单返回结果展示在`<iframe>`窗口）。
+
+下面是一个比较常见的例子。
+
+```html
+<form action="https://example.com/api" method="post">
+  <label for="POST-name">Name:</label>
+  <input id="POST-name" type="text" name="name">
+  <input type="submit" value="Save">
+</form>
+```
+
+上面代码表示将一个`name`控件的值，使用`POST`方法发送到服务器网址`https://example.com/api`。
+
+## `<fieldset>`
+
+## `<button>`
 
 `<button>`标签会生成一个可以点击的按钮。
 
@@ -32,8 +55,8 @@
 
 - `autofocus`：布尔属性，表示网页加载时，焦点就在这个按钮。网页里面只能有一个元素，具有这个属性。
 - `disabled`：布尔属性，表示按钮不可用，会导致按钮变灰，不可点击。
-- `name`：按钮的名称，将随表单一起提交到服务器。
-- `value`：按钮的值，将随表单一起提交到服务器。
+- `name`：按钮的名称（与`value`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
+- `value`：按钮的值（与`name`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
 - `type`：按钮的类型，可能的值有三种：`submit`（点击后将数据提交给服务器），`reset`（将所有控件的值重置为初始值），`button`（没有默认行为，由脚本指定按钮的行为）。
 - `form`：指定按钮关联的`<form>`表单，值为`<form>`的`id`属性。如果省略该属性，默认关联按钮所在父表单。
 - `formaction`：数据提交到服务器的目标 URL，会覆盖`<form>`元素的`action`属性。
@@ -42,6 +65,13 @@
 - `formnovalidate`：布尔属性，数据提交到服务器时关闭本地验证，会覆盖`<form>`元素的`novalidate`属性。
 - `formtarget`：数据提交到服务器后，展示服务器返回数据的窗口，会覆盖`<form>`元素的`target`属性。可能的值有`_self`（当前窗口），`_blank`（新的空窗口）、`_parent`（父窗口）、`_top`（顶层窗口）。
 
+`<button>`内部不仅放置文字，还可以放置图像，这可以形成图像按钮。
+
+```html
+<button name="search" type="submit">
+  <img src="search.gif">搜索
+</button>
+```
 
 ### `<label>`
 

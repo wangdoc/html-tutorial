@@ -384,3 +384,15 @@ console.log('hello world');
 - `nonce`：一个密码随机数，由服务器在 HTTP 头信息里面给出，每次加载脚本都不一样。它相当于给出了内嵌脚本的白名单，只有在白名单内的脚本才能执行。
 - `referrerpolicy`：HTTP 请求的`Referer`字段的处理方法。
 
+## `<noscript>`
+
+`<noscript>`标签用于浏览器不支持或关闭 JavaScript 时，所要显示的内容。
+
+```html
+<noscript>
+  您的浏览器不能执行 JavaScript 语言，页面无法正常显示。
+</noscript>
+```
+
+上面这段代码，只有浏览器不能执行 JavaScript 代码时才会显示，否则就不会显示。
+
