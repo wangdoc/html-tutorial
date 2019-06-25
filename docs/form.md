@@ -39,45 +39,40 @@
 
 上面代码表示将一个`name`控件的值，使用`POST`方法发送到服务器网址`https://example.com/api`。
 
-## `<fieldset>`
+## `<fieldset>`，`<legend>`
 
-## `<button>`
-
-`<button>`标签会生成一个可以点击的按钮。
+`<fieldset>`标签是一个块级容器标签，表示控件的集合，用于将一组相关控件组合成一组。
 
 ```html
-<button>搜索</button>
+<form>
+  <fieldset>
+    <p>年龄：<input type="text" name="age"></p>
+    <p>性别：<input type="text" name="gender"></p>
+  </fieldset>
+</form>
 ```
 
-上面代码会产生一个按钮，上面的文字就是“搜索”。
+上面代码中，两个输入框是一组，它们的外面会显示一个方框。
 
-`<button>`具有以下属性。
+`<fieldset>`有以下属性。
 
-- `autofocus`：布尔属性，表示网页加载时，焦点就在这个按钮。网页里面只能有一个元素，具有这个属性。
-- `disabled`：布尔属性，表示按钮不可用，会导致按钮变灰，不可点击。
-- `name`：按钮的名称（与`value`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
-- `value`：按钮的值（与`name`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
-- `type`：按钮的类型，可能的值有三种：`submit`（点击后将数据提交给服务器），`reset`（将所有控件的值重置为初始值），`button`（没有默认行为，由脚本指定按钮的行为）。
-- `form`：指定按钮关联的`<form>`表单，值为`<form>`的`id`属性。如果省略该属性，默认关联按钮所在父表单。
-- `formaction`：数据提交到服务器的目标 URL，会覆盖`<form>`元素的`action`属性。
-- `formenctype`：数据提交到服务器的编码方式，会覆盖`<form>`元素的`enctype`属性。可能的值有三种：`application/x-www-form-urlencoded`（默认值），`multipart/form-data`（只用于文件上传），`text/plain`。
-- `formmethod`：数据提交到服务器使用的 HTTP 方法，会覆盖`<form>`元素的`method`属性，可能的值为`post`或`get`。
-- `formnovalidate`：布尔属性，数据提交到服务器时关闭本地验证，会覆盖`<form>`元素的`novalidate`属性。
-- `formtarget`：数据提交到服务器后，展示服务器返回数据的窗口，会覆盖`<form>`元素的`target`属性。可能的值有`_self`（当前窗口），`_blank`（新的空窗口）、`_parent`（父窗口）、`_top`（顶层窗口）。
+- `disabled`：布尔属性，一旦设置会使得`<fieldset>`内部包含的控件都不可用，都变成灰色状态。
+- `form`：指定控件组所属的`<form>`，它的值等于`<form>`的`id`属性。
+- `name`：该控件组的名称。
 
-`<button>`内部不仅放置文字，还可以放置图像，这可以形成图像按钮。
+`<legend>`标签用来设置`<fieldset>`控件组的标题，通常是`<fieldset>`内部的第一个元素，会嵌入显示在控件组的上边框里面。
 
 ```html
-<button name="search" type="submit">
-  <img src="search.gif">搜索
-</button>
+<fieldset>
+  <legend>学生情况登记</legend>
+  <p>年龄：<input type="text" name="age"></p>
+  <p>性别：<input type="text" name="gender"></p>
+</fieldset>
 ```
 
-### `<label>`
+上面代码中，这个控件组的标题会，嵌入显示在`<fieldset>`的上边框。
 
-`<label>`标签提供控件的文字说明，帮助用户理解控件的目的。
-
-## input 元素
+## `<input>`
 
 ### type 属性
 
@@ -191,6 +186,44 @@ Content-Type: multipart/form-data; boundary=AaB03x
    ... contents of file1.txt ...
    --AaB03x--
 ```
+
+## `<button>`
+
+`<button>`标签会生成一个可以点击的按钮。
+
+```html
+<button>搜索</button>
+```
+
+上面代码会产生一个按钮，上面的文字就是“搜索”。
+
+`<button>`具有以下属性。
+
+- `autofocus`：布尔属性，表示网页加载时，焦点就在这个按钮。网页里面只能有一个元素，具有这个属性。
+- `disabled`：布尔属性，表示按钮不可用，会导致按钮变灰，不可点击。
+- `name`：按钮的名称（与`value`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
+- `value`：按钮的值（与`name`属性配合使用），将以`name=value`的形式，随表单一起提交到服务器。
+- `type`：按钮的类型，可能的值有三种：`submit`（点击后将数据提交给服务器），`reset`（将所有控件的值重置为初始值），`button`（没有默认行为，由脚本指定按钮的行为）。
+- `form`：指定按钮关联的`<form>`表单，值为`<form>`的`id`属性。如果省略该属性，默认关联按钮所在父表单。
+- `formaction`：数据提交到服务器的目标 URL，会覆盖`<form>`元素的`action`属性。
+- `formenctype`：数据提交到服务器的编码方式，会覆盖`<form>`元素的`enctype`属性。可能的值有三种：`application/x-www-form-urlencoded`（默认值），`multipart/form-data`（只用于文件上传），`text/plain`。
+- `formmethod`：数据提交到服务器使用的 HTTP 方法，会覆盖`<form>`元素的`method`属性，可能的值为`post`或`get`。
+- `formnovalidate`：布尔属性，数据提交到服务器时关闭本地验证，会覆盖`<form>`元素的`novalidate`属性。
+- `formtarget`：数据提交到服务器后，展示服务器返回数据的窗口，会覆盖`<form>`元素的`target`属性。可能的值有`_self`（当前窗口），`_blank`（新的空窗口）、`_parent`（父窗口）、`_top`（顶层窗口）。
+
+`<button>`内部不仅放置文字，还可以放置图像，这可以形成图像按钮。
+
+```html
+<button name="search" type="submit">
+  <img src="search.gif">搜索
+</button>
+```
+
+### `<label>`
+
+`<label>`标签提供控件的文字说明，帮助用户理解控件的目的。
+
+
 
 ## 表单的校验规则
 
