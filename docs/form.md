@@ -16,6 +16,18 @@
 
 上面代码就是表单的基本形式。
 
+下面是一个比较常见的例子。
+
+```html
+<form action="https://example.com/api" method="post">
+  <label for="POST-name">用户名：</label>
+  <input id="POST-name" type="text" name="name">
+  <input type="submit" value="提交">
+</form>
+```
+
+上面代码会显示一个用户名输入框和一个提交按钮。用户在输入框内部输入用户名，比如`foobar`，然后点击提交按钮，浏览器就会向服务器`https://example.com/api`发送一个 POST 请求，发送`name=foobar`这样一段数据。
+
 `<form>`有以下属性。
 
 - `accept-charset`：服务器接受的字符编码列表，使用空格分隔，默认与网页编码相同。
@@ -26,18 +38,6 @@
 - `name`：表单的名称，应该在网页中是唯一的。
 - `novalidate`：布尔属性，表单提交时是否取消验证。
 - `target`：在哪个窗口展示服务器返回的数据，可能的值有`_self`（当前窗口），`_blank`（新建窗口），`_parent`（父窗口），`_top`（顶层窗口），`<iframe>`标签的`name`属性（即表单返回结果展示在`<iframe>`窗口）。
-
-下面是一个比较常见的例子。
-
-```html
-<form action="https://example.com/api" method="post">
-  <label for="POST-name">Name:</label>
-  <input id="POST-name" type="text" name="name">
-  <input type="submit" value="Save">
-</form>
-```
-
-上面代码表示将一个`name`控件的值，使用`POST`方法发送到服务器网址`https://example.com/api`。
 
 ## `<fieldset>`，`<legend>`
 
@@ -88,8 +88,29 @@
 
 `type`属性决定了`<input>`的形式。该属性可以取以下值。
 
-- `text`：普通的文本输入框。换行符会自动从输入中删除。
-- `button`：没有默认行为的按钮。
+**（1）`text`**
+
+`type="text"`是普通的文本输入框，用来输入单行文本。如果用户输入换行符，换行符会自动从输入中删除。
+
+```html
+<input type="text" id="name" name="name" required
+       minlength="4" maxlength="8" size="10">
+```
+
+`text`输入框有以下配套属性。
+
+- `maxlength`：可以输入的最大字符数，值为一个非负整数。
+- `minlength`：可以输入的最小字符数，值为一个非负整数，且必须小于`maxlength`。
+- `pattern`：用户输入必须匹配的正则表达式，比如要求用户输入4个～8个英文字符，可以写成`pattern="[a-z]{4,8}"`。
+- `placeholder`：输入字段为空时，用于提示的示例值。只要用户没有任何字符，该提示就会出现，否则会消失。
+- `readonly`：布尔属性，表示该输入框是只读的，用户只能看，不能输入。
+- `size`：表示输入框的显示长度有多少个字符宽，它的值是一个正整数，默认等于20。超过这个数字的字符，必须移动光标才能看到。
+- `spellcheck`：是否对用户输入启用拼写检查，可能的值为`true`或`false`。
+
+**（2）`button`**
+
+`type="button"`是没有默认行为的按钮。
+
 - `checkbox`：复选框，允许选择或取消选择单个选项。
 - `color`：选择颜色的控件。
 - `date`：选择年月日的控件。
