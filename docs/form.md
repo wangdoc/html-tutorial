@@ -88,7 +88,7 @@
 
 `type`属性决定了`<input>`的形式。该属性可以取以下值。
 
-**（1）`text`**
+**（1）text**
 
 `type="text"`是普通的文本输入框，用来输入单行文本。如果用户输入换行符，换行符会自动从输入中删除。
 
@@ -107,15 +107,136 @@
 - `size`：表示输入框的显示长度有多少个字符宽，它的值是一个正整数，默认等于20。超过这个数字的字符，必须移动光标才能看到。
 - `spellcheck`：是否对用户输入启用拼写检查，可能的值为`true`或`false`。
 
-**（2）`button`**
+**（2）button**
 
-`type="button"`是没有默认行为的按钮。
+`type="button"`是没有默认行为的按钮，通常脚本指定`click`事件的监听函数来使用。
 
-- `checkbox`：复选框，允许选择或取消选择单个选项。
+```html
+<input type="button" value="点击">
+```
+
+建议尽量不使用这个类型，而使用`<button>`标签代替，一则语义更清晰，二则`<button>`标签内部可以插入图片或其他 HTML 代码。
+
+**（3）submit**
+
+`type="submit"`是表单的提交按钮。用户点击这个按钮，就会把表单提交给服务器。
+
+```html
+<input type="submit" value="提交">
+```
+
+如果不指定`value`属性，浏览器会在提交按钮上显示默认的文字，通常是`Submit`。
+
+该类型有以下配套属性，用来覆盖`<form>`标签的相应设置。
+
+- `formaction`：提交表单数据的服务器 URL。
+- `formenctype`：表单数据的编码类型。
+- `formmethod`：提交表单使用的 HTTP 方法（`get`或`post`）。
+- `formnovalidate`：一个布尔值，表示数据提交给服务器之前，是否要忽略表单验证。
+- `formtarget`：收到服务器返回的数据后，在哪一个窗口显示。
+
+**（4）image**
+
+`type="image"`表示将一个图像文件作为提交按钮，行为和用法与`type="submit"`完全一致。
+
+```html
+<input type="image" alt="登陆" src="login-button.png">
+```
+
+上面代码中，图像文件是一个可以点击的按钮，点击后会提交数据到服务器。
+
+该类型有以下配套属性。
+
+- `alt`：图像无法加载时显示的替代字符串。
+- `src`：加载的图像 URL。
+- `height`：图像的显示高度，单位为像素。
+- `width`：图像的显示宽度，单位为像素。
+- `formaction`：提交表单数据的服务器 URL。
+- `formenctype`：表单数据的编码类型。
+- `formmethod`：提交表单使用的 HTTP 方法（`get`或`post`）。
+- `formnovalidate`：一个布尔值，表示数据提交给服务器之前，是否要忽略表单验证。
+- `formtarget`：收到服务器返回的数据后，在哪一个窗口显示。
+
+用户点击图像按钮提交时，会额外提交两个参数`x`和`y`到服务器，表示鼠标的点击位置，比如`x=52&y=55`。`x`是横坐标，`y`是纵坐标，都以图像左上角作为原点`(0, 0)`。如果图像按钮设置了`name`属性，比如`name="position"`，那么将以该值作为坐标的前缀，比如`position.x=52&position.y=55`。这个功能通常用来地图类型的操作，让服务器知道用户点击了地图的哪个部分。
+
+**（5）reset**
+
+`type="reset"`是一个重置按钮，用户点击以后，所有表格控件重置为初始值。
+
+```html
+<input type="reset" value="重置">
+```
+
+如果不设置`value`属性，浏览器会在按钮上面加上默认文字，通常是`Reset`。
+
+这个控件用处不大，用户点错了还会使得所有已经输入的值都被重置，建议不要使用。
+
+**（6）checkbox**
+
+`type="checkbox"`是复选框，允许选择或取消选择该选项。
+
+```html
+<input type="checkbox" name="agreement" checked>
+<label for="agreement">是否同意</label>
+```
+
+上面代码会在文字前面，显示一个可以点击的选择框，点击可以选中，再次点击可以取消。上面代码中，`checked`属性表示默认选中。
+
+`value`属性的默认值是`on`。也就是说，如果没有设置`value`属性，以上例来说，选中复选框时，会提交`agreement=on`。如果没有选中，提交时不会有该项。
+
+多个相关的复选框，可以放在`<fieldset>`里面。
+
+```html
+<fieldset>
+  <legend>你的兴趣</legend>
+  <div>
+    <input type="checkbox" id="coding" name="interest" value="coding">
+    <label for="coding">编码</label>
+  </div>
+  <div>
+    <input type="checkbox" id="music" name="interest" value="music">
+    <label for="music">音乐</label>
+  </div>
+</fieldset>
+```
+
+上面代码中，如果用户同时选中两个复选框，提交的时候就会有两个`name`属性，比如`interest=coding&interest=music`。
+
+**（7）radio**
+
+`type="radio"`是单选框，表示一组选择之中，只能选中一项。单选框通常为一个小圆圈，选中时会被填充或突出显示。
+
+```html
+<fieldset>
+  <legend>性别</legend>
+  <div>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">男</label>
+  </div>
+  <div>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">女</label>
+  </div>
+</fieldset>
+```
+
+上面代码中，性别只能在两个选项之中，选择一项。
+
+注意，多个单选框的`name`属性的值，应该都是一致的。提交到服务器的就是选中的那个值。
+
+该类型的配套属性如下。
+
+- `checked`：布尔属性，表示是否默认选中当前项。
+- `value`：用户选中该项时，提交到服务器的值，默认为`on'`。
+
+**（8）email**
+
+`email`：只能输入电子邮箱的输入框。
+
 - `color`：选择颜色的控件。
 - `date`：选择年月日的控件。
 - `datetime-local`：选择日期和时间的控件，没有时区。
-- `email`：只能输入电子邮箱的输入框。
+
 - `file`：选择文件的控件。
 - `hidden`：不会在页面显示，但是它的值会传给服务器的控件。
 - `image`：指定一张图片作为提交按钮的控件。
