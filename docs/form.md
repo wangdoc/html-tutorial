@@ -390,14 +390,171 @@
 
 **（14）url**
 
-- `color`：选择颜色的控件。
-- `date`：选择年月日的控件。
-- `datetime-local`：选择日期和时间的控件，没有时区。
-- `month`：输入月份和年份的控件，没有时区。
-- `time`：输入时间的控件，没有时区。
-- `url`：只能输入网址的输入框。注意，不带有协议的网址是无效的，比如`foo.com`是无效的，`http://foo.com`是有效的。
-- `tel`：只能输入电话号码的输入框。由于全世界的电话号码格式都不相同，因此这个类型不是很有用，大多数时候需要自定义验证。
-- `week`：输入日期的控件，只能输入年数和周数，没有时区。
+`type="url"`是一个只能输入网址的文本框。提交表单之前，浏览器会自动检查网址格式是否正确，如果不正确，就会无法提交。
+
+```html
+<input type="url" name="url" id="url"
+       placeholder="https://example.com"
+       pattern="https://.*" size="30"
+       required>
+```
+
+上面代码的`pattern`属性指定输入的网址只能使用 HTTPS 协议。
+
+注意，该类型规定，不带有协议的网址是无效的，比如`foo.com`是无效的，`http://foo.com`是有效的。
+
+该类型的配套属性如下。
+
+- `maxlength`：允许的最大字符数。
+- `minlength`：允许的最少字符串。
+- `pattern`：输入内容必须匹配的正则表达式。
+- `placeholder`：输入为空时显示的示例文本。
+- `readonly`：布尔属性，表示该控件的内容是否只读。
+- `size`：一个非负整数，表示该输入框显示宽度为多少个字符。
+- `spellcheck`：是否启动拼写检查，可能的值为`true`（启用）和`false`（不启用）。
+
+该类型与`<datalist>`标签搭配使用，可以形成下拉列表供用户选择。随着用户不断键入，会缩小显示范围，只显示匹配的备选项。
+
+```html
+<input id="myURL" name="myURL" type="url"
+       list="defaultURLs">
+
+<datalist id="defaultURLs">
+  <option value="https://developer.mozilla.org/" label="MDN Web Docs">
+  <option value="http://www.google.com/" label="Google">
+  <option value="http://www.microsoft.com/" label="Microsoft">
+  <option value="https://www.mozilla.org/" label="Mozilla">
+  <option value="http://w3.org/" label="W3C">
+</datalist>
+```
+
+上面代码中，`<option>`的`label`属性表示文本标签，显示在备选下拉框的右侧，网址显示在左侧。
+
+**（15）tel**
+
+`type="tel"`是一个只能输入电话号码的输入框。由于全世界的电话号码格式都不相同，因此浏览器没有默认的验证模式，大多数时候需要自定义验证。
+
+```html
+<input type="tel" id="phone" name="phone"
+       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+       required>
+
+<small>Format: 123-456-7890</small>
+```
+
+上面代码定义了一个只能输入10位电话号码的输入框。
+
+该类型的配套属性如下。
+
+- `maxlength`：允许的最大字符数。
+- `minlength`：允许的最少字符串。
+- `pattern`：输入内容必须匹配的正则表达式。
+- `placeholder`：输入为空时显示的示例文本。
+- `readonly`：布尔属性，表示该控件的内容是否只读。
+- `size`：一个非负整数，表示该输入框显示宽度为多少个字符。
+
+**（16）color**
+
+`type="color"`是一个选择颜色的控件，它的值一律都是`#rrggbb`格式。
+
+```html
+<input type="color" id="background" name="background"
+           value="#e66465">
+```
+
+上面代码在 Chrome 浏览器中，会显示一个`#e66465`的色块。点击色块，就会出现一个拾色器，供用户选择颜色。
+
+如果没有指定`value`属性的初始值，默认值为`#000000`（黑色）。
+
+**（17）date**
+
+`type="date"`是一个只能输入日期的输入框，用户可以输入年月日，但是不能输入时分秒。输入格式是`YYYY-MM-DD`。
+
+```html
+<input type="date" id="start" name="start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+```
+
+上面代码会显示一个输入框，默认日期是2018年7月22日。用户点击以后，会日期选择器，供用户选择新的日期。
+
+该类型有以下配套属性。
+
+- `max`：可以允许的最晚日期，格式为`yyyy-MM-dd`。
+- `min`：可以允许的最早日期，格式为`yyyy-MM-dd`。
+- `step`：步长值，一个数字，以天为单位。
+
+**（18）time**
+
+`type="time"`是一个只能输入时间的输入框，可以输入时分秒，不能输入年月日。日期格式是24小时制的`hh:mm`，如果包括秒数，格式则是`hh:mm:ss`。日期选择器的形式则随浏览器不同而不同。
+
+```html
+<input type="time" id="appt" name="appt"
+       min="9:00" max="18:00" required>
+
+<small>营业时间上午9点到下午6点</small>
+```
+
+该属性有以下配套属性。
+
+- `max`：允许的最晚时间。
+- `min`：允许的最早时间。
+- `readonly`：布尔属性，表示用户是否不可以编辑时间。
+- `step`：步长值，单位为秒。
+
+```html
+<input id="appt" type="time" name="appt" step="2">
+```
+
+上面代码中，调节控件的话，时间每次改变的幅度是2秒钟。
+
+**（19）month**
+
+`type="month"`是一个只能输入年份和月份的输入框，格式为`YYYY-MM`。
+
+```html
+<input type="month" id="start" name="start"
+       min="2018-03" value="2018-05">
+```
+
+该属性有以下配套属性。
+
+- `max`：允许的最晚时间，格式为`yyyy-MM`。
+- `min`：允许的最早时间，格式为`yyyy-MM`。
+- `readonly`：布尔属性，表示用户是否不可以编辑时间。
+- `step`：步长值，单位为月。
+
+**（20）week**
+
+`type="week"`是一个输入一年中第几周的输入框。格式为`yyyy-Www`，比如`2018-W18`表示2018年第18周。
+
+```html
+<input type="week" name="week" id="camp-week"
+       min="2018-W18" max="2018-W26" required>
+```
+
+该属性有以下配套属性。
+
+- `max`：允许的最晚时间，格式为`yyyy-Www`。
+- `min`：允许的最早时间，格式为`yyyy-Www`。
+- `readonly`：布尔属性，表示用户是否不可以编辑时间。
+- `step`：步长值，单位为周。
+
+**（21）datetime-local**
+
+`type="datetime-local"`是一个时间输入框，让用户输入年月日和时分，格式为`yyyy-MM-ddThh:mm`。注意，该控件不支持秒。
+
+```html
+<input type="datetime-local" id="meeting-time"
+       name="meeting-time" value="2018-06-12T19:30"
+       min="2018-06-07T00:00" max="2018-06-14T00:00">
+```
+
+该属性有以下配套属性。
+
+- `max`：允许的最晚时间，格式为`yyyy-MM-ddThh:mm`。
+- `min`：允许的最早时间，格式为`yyyy-MM-ddThh:mm`。
+- `step`：步长值，单位为秒，默认值是60。
 
 ### min 属性，max 属性
 
