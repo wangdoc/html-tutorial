@@ -231,32 +231,87 @@
 
 **（8）email**
 
-`email`：只能输入电子邮箱的输入框。
+`type="email"`是一个只能输入电子邮箱的文本输入框。表单提交之前，浏览器会自动验证是否符合电子邮箱的格式，如果不符合就会显示提示，无法提交到服务器。
+
+```html
+<input type="email" pattern=".+@foobar.com" size="30" required>
+```
+
+上面代码会生成一个必填的文本框，只能输入后缀为`foobar.com`的邮箱地址。
+
+该类型有一个`multiple`的布尔属性，一旦设置，就表示该输入框可以输入多个逗号分隔的电子邮箱。
+
+```html
+<input id="emailAddress" type="email" multiple required>
+```
+
+注意，如果同时设置了`multiple`属性和`required`属性，零个电子邮箱是允许的，也就是该输入框允许为空。
+
+该类型的配套属性如下。
+
+- `maxlength`：可以输入的最大字符数。
+- `minlength`：可以输入的最少字符数。
+- `multiple`：布尔属性，是否允许输入多个以逗号分隔的电子邮箱。
+- `pattern`：输入必须匹配的正则表达式。
+- `placeholder`：输入为空时的显示文本。
+- `readonly`：布尔属性，该输入框是否只读。
+- `size`：一个非负整数，表示输入框的显示长度为多少个字符。
+- `spellcheck`：是否对输入内容启用拼写检查，可能的值为`true`或`false`。
+
+该类型还可以搭配`<datalist>`标签，提供输入的备选项。
+
+```html
+<input type="email" size="40" list="defaultEmails">
+
+<datalist id="defaultEmails">
+  <option value="jbond007@mi6.defence.gov.uk">
+  <option value="jbourne@unknown.net">
+  <option value="nfury@shield.org">
+  <option value="tony@starkindustries.com">
+  <option value="hulk@grrrrrrrr.arg">
+</datalist>
+```
+
+上面代码中，输入焦点进入输入框以后，会显示一个下拉列表，里面有五个参考项，供用户参考。
+
+**（9）password**
+
+`type="password"`是一个密码输入框。用户的输入会被遮挡，字符通常显示星号（`*`）或点（`·`）。
+
+```html
+<input type="password" id="pass" name="password"
+           minlength="8" required>
+```
+
+浏览器对该类型输入框的显示，会有所差异。一种常见的处理方法是，用户每输入一个字符，先在输入框里面显示一秒钟，然后再遮挡该字符。
+
+如果用户输入内容包含换行符（`U+000A`）和回车符（`U+000D`），浏览器会自动将这两个字符过滤掉。
+
+该类型的配套属性如下。
+
+- `maxlength`：可以输入的最大字符数。
+- `minlength`：可以输入的最少字符数。
+- `pattern`：输入必须匹配的正则表达式。
+- `placeholder`：输入为空时的显示文本。
+- `readonly`：布尔属性，该输入框是否只读。
+- `size`：一个非负整数，表示输入框的显示长度为多少个字符。
+- `autocomplete`：是否允许自动填充，可能的值有`on`（允许自动填充）、`off`（不允许自动填充）、`current-password`（填入当前网站保存的密码）、`new-password`（自动生成一个随机密码）。
+- `inputmode`：允许用户输入的数据类型，可能的值有`none`（不使用系统输入法）、`text`（标准文本输入）、`decimal`（数字，包含小数）、`numeric`（数字0-9）等。
+
+**（10）file**
 
 - `color`：选择颜色的控件。
 - `date`：选择年月日的控件。
 - `datetime-local`：选择日期和时间的控件，没有时区。
-
 - `file`：选择文件的控件。
 - `hidden`：不会在页面显示，但是它的值会传给服务器的控件。
-- `image`：指定一张图片作为提交按钮的控件。
 - `month`：输入月份和年份的控件，没有时区。
 - `number`：只能输入数字的输入框。
-- `password`：密码的输入框。
-- `radio`：单选框，多个选项之中同时只能选择一个选项。
 - `range`：允许用户在某个范围内进行选择的控件。
 - `time`：输入时间的控件，没有时区。
 - `url`：只能输入网址的输入框。注意，不带有协议的网址是无效的，比如`foo.com`是无效的，`http://foo.com`是有效的。
 - `tel`：只能输入电话号码的输入框。由于全世界的电话号码格式都不相同，因此这个类型不是很有用，大多数时候需要自定义验证。
 - `week`：输入日期的控件，只能输入年数和周数，没有时区。
-
-### minlength 属性，maxlength 属性
-
-`minlength`属性指定输入框内容的最小长度，`maxlength`属性指定最大长度。
-
-```html
-<input type="text" id="uname" name="uname" minlength="4" maxlength="10">
-```
 
 ### min 属性，max 属性
 
@@ -386,11 +441,11 @@ Content-Type: multipart/form-data; boundary=AaB03x
 </button>
 ```
 
-### `<label>`
+## `<label>`
 
 `<label>`标签提供控件的文字说明，帮助用户理解控件的目的。
 
-
+## `<datalist>`，`<option>`
 
 ## 表单的校验规则
 
