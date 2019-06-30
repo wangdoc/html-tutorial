@@ -347,11 +347,53 @@
 
 **（13）range**
 
+`type="range"`是一个滑块，用户拖动滑块，选择给定范围之中的一个数值。因为拖动产生的值是不精确的，如果需要精确数值，不建议使用这个控件。常见的例子是调节音量。
+
+```html
+<input type="range" id="start" name="volume"
+         min="0" max="11">
+```
+
+上面代码会产生一个最小值为`0`、最大值为`11`的滑块区域。用户拖动滑块，选择想要的音量。
+
+该类型的配套属性如下，用法与`type="number"`一致。
+
+- `max`：允许的最大值，默认为100。
+- `min`：允许的最小值，默认为0。
+- `step`：步长值，默认为1。
+
+`value`属性的初始值就是滑块的默认位置。如果没有设置`value`属性，滑块默认就会停在最大值和最小值中间。如果`max`属性、`min`属性、`value`属性都没有设置，那么`value`属性为50。
+
+该类型与`<datalist>`标签配合使用，可以在滑动区域产生刻度。
+
+```html
+<input type="range" list="tickmarks">
+
+<datalist id="tickmarks">
+  <option value="0" label="0%">
+  <option value="10">
+  <option value="20">
+  <option value="30">
+  <option value="40">
+  <option value="50" label="0%">
+  <option value="60">
+  <option value="70">
+  <option value="80">
+  <option value="90">
+  <option value="100" label="0%">
+</datalist>
+```
+
+上面代码会在0～100之间产生11个刻度。其中，`0%`、`50%`和`100%`三个位置会有文字提示，不过浏览器很可能不支持。
+
+注意，浏览器生成的都是水平滑块。如果想要生成垂直滑块，可以使用 CSS 改变滑块区域的方向。
+
+**（14）url**
+
 - `color`：选择颜色的控件。
 - `date`：选择年月日的控件。
 - `datetime-local`：选择日期和时间的控件，没有时区。
 - `month`：输入月份和年份的控件，没有时区。
-- `range`：允许用户在某个范围内进行选择的控件。
 - `time`：输入时间的控件，没有时区。
 - `url`：只能输入网址的输入框。注意，不带有协议的网址是无效的，比如`foo.com`是无效的，`http://foo.com`是有效的。
 - `tel`：只能输入电话号码的输入框。由于全世界的电话号码格式都不相同，因此这个类型不是很有用，大多数时候需要自定义验证。
