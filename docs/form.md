@@ -1,6 +1,6 @@
 # 表单
 
-表单（form）是用户输入信息，与网页互动的一种形式。大多数情况下，用户提交的信息会发给服务器，比如网站的搜索栏就是表单。
+表单（form）是用户输入信息与网页互动的一种形式。大多数情况下，用户提交的信息会发给服务器，比如网站的搜索栏就是表单。
 
 表单由一种或多种的小部件组成，比如输入框、按钮、单选框或复选框。这些小部件称为控件（controls）。
 
@@ -23,12 +23,14 @@
 ```html
 <form action="https://example.com/api" method="post">
   <label for="POST-name">用户名：</label>
-  <input id="POST-name" type="text" name="name">
+  <input id="POST-name" type="text" name="user">
   <input type="submit" value="提交">
 </form>
 ```
 
-上面代码会显示一个用户名输入框和一个提交按钮。用户在输入框内部输入用户名，比如`foobar`，然后点击提交按钮，浏览器就会向服务器`https://example.com/api`发送一个 POST 请求，发送`name=foobar`这样一段数据。
+上面代码就是一个表单，一共包含三个控件：一个`<label>`标签，一个文本输入框，一个提交按钮。其中，文本输入框的`name`属性是`user`，表示将向服务器发送一个键名为`user`的键值对，键值就是这个控件的`value`属性，等于用户输入的值。
+
+用户在文本输入框里面，输入用户名，比如`foobar`，然后点击提交按钮，浏览器就会向服务器`https://example.com/api`发送一个 POST 请求，发送`user=foobar`这样一段数据。
 
 `<form>`有以下属性。
 
@@ -37,7 +39,7 @@
 - `autocomplete`：如果用户没有填写某个控件，浏览器是否可以自动填写该值。它的可能取值分别为`off`（不自动填写）和`on`（自动填写）。
 - `method`：提交数据的 HTTP 方法，可能的值有`post`（表单数据作为 HTTP 数据体发送），`get`（表单数据作为 URL 的查询字符串发送），`dialog`（表单位于`<dialog>`内部使用）。
 - `enctype`：当`method`属性等于`post`时，该属性指定提交给服务器的 MIME 类型。可能的值为`application/x-www-form-urlencoded`（默认值），`multipart/form-data`（文件上传的情况），`text/plain`。
-- `name`：表单的名称，应该在网页中是唯一的。
+- `name`：表单的名称，应该在网页中是唯一的。注意，如果一个控件没有设置`name`属性，那么这个控件的值就不会作为键值对，向服务器发送。
 - `novalidate`：布尔属性，表单提交时是否取消验证。
 - `target`：在哪个窗口展示服务器返回的数据，可能的值有`_self`（当前窗口），`_blank`（新建窗口），`_parent`（父窗口），`_top`（顶层窗口），`<iframe>`标签的`name`属性（即表单返回结果展示在`<iframe>`窗口）。
 
@@ -148,6 +150,16 @@ Content-Type: text/plain
 
 - `for`：关联控件的`id`属性。
 - `form`：关联表单的`id`属性。设置了该属性后，`<label>`可以放置在页面的任何位置，否则只能放在`<form>`内部。
+
+一个控件可以有多个关联的`<label>`标签。
+
+```html
+<label for="username">用户名：</label>
+<input type="text" name="username">
+<label for="username"><abbr title="required">*</abbr></label>
+```
+
+上面代码中，`<input>`有两个关联的`<label>`。
 
 ## `<input>`
 
@@ -850,7 +862,7 @@ Content-Type: text/plain
 
 ## `<meter>`
 
-`<meter>`标签是一个行内元素，表示指示器，用来显示已知范围内的一个值。浏览器通常会将其显示为一个不会滚动的指示条。
+`<meter>`标签是一个行内元素，表示指示器，用来显示已知范围内的一个值，很适合用于任务的当前进度、磁盘已用空间、充电量等带有比例性质的场合。浏览器通常会将其显示为一个不会滚动的指示条。
 
 ```html
 <p>烤箱的当前温度是<meter min="200" max="500"
