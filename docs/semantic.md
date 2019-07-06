@@ -109,7 +109,7 @@ HTML 标签的一个重要作用，就是声明网页元素的性质，使得用
 
 ### `<article>`
 
-`<article>`标签表示页面里面一段完整的内容，即使页面的其他部分不存在，也具有独立使用的意义。通常用来表示一篇文章或者一个论坛帖子。
+`<article>`标签表示页面里面一段完整的内容，即使页面的其他部分不存在，也具有独立使用的意义，通常用来表示一篇文章或者一个论坛帖子。它可以有自己的标题（`<h1>`到`<h6>`）。
 
 ```html
 <article>
@@ -118,7 +118,7 @@ HTML 标签的一个重要作用，就是声明网页元素的性质，使得用
 </article>
 ```
 
-一个网页可以包含多个`<article>`，比如包含多篇文章。另外，`<article>`可以嵌套，比如文章里面的读者评论，可以是另外一个`<article>`。
+一个网页可以包含一个或多个`<article>`，比如包含多篇文章。
 
 ### `<aside>`
 
@@ -145,7 +145,7 @@ HTML 标签的一个重要作用，就是声明网页元素的性质，使得用
 
 ### `<section>`
 
-`<section>`标签表示一个含有主题的独立部分，通常用在文档里面表示一个章节。一个`<article>`可以包含多个`<section>`。
+`<section>`标签表示一个含有主题的独立部分，通常用在文档里面表示一个章节，比如`<article>`可以包含多个`<section>`。通常来说，`<section>`总是多个一起使用，一个页面不能只有一个`<section>`。
 
 ```html
 <article>
@@ -180,142 +180,4 @@ HTML 标签的一个重要作用，就是声明网页元素的性质，使得用
 ```
 
 一般来说，`<nav>`都是放置在`<header>`里面，`<footer>`里面的链接不适合放入`<nav>`。另外，一个页面可以有多个`<nav>`，比如一个用于站点导航，另一个用于文章导航。
-
-### Label
-
-`Label`用于为指定的表单元素，提供解释性文本。
-
-它有两种用法。
-
-```html
-<!-- 用法一 -->
-<label>
-  <input type="checkbox" name="quokka">
-  Yes, I want to buy a quokka!
-</label>
-
-<!-- 用法二 -->
-<input type="checkbox" id="yayforwallaby"
-       name="wallaby">
-<label for="yayforwallaby">
-  Yes, I want to buy a wallaby!
-</label>
-```
-
-注意，在用法二之中，表单元素必须有`id`属性，`label`元素的`for`属性匹配的是`id`属性，而不是`name`属性。`name`属性用于将这个表单元素的值发送到服务器。
-
-另一点需要注意的是，在JavaScript之中，`for`属性无法以`element.for`的形式获取，因为`for`是一个JavaScript保留字，必须改用`htmlfor`表示。
-
-```javascript
-var labels = document.querySelectorAll('label');
-for (var i=0; i<labels.length; i++) {
-  if (labels[i].htmlFor) {
-    if (!document.getElementById(labels[i].htmlFor)) {
-      labels[i].style.background = 'firebrick';
-    }
-  }
-}
-```
-
-### Meter
-
-Meter标签表示某个范围内的度量值。
-
-```html
-<meter>1 of 10</meter>
-<meter>2 of 7</meter>
-```
-
-它有6个属性。
-
-- value
-- min
-- max
-- high
-- low
-- optimum
-
-```html
-Your batting average is <meter value=".340" min="0" max="1.000" low=".215" high=".367" optimum="1.000">.340</meter>
-```
-
-### Progress
-
-Progress标签表示进度。
-
-```html
-Your download is <progress>55%</progress> complete
-```
-
-它有三个属性。
-
-- value
-- min
-- max
-
-### Section
-
-section标签代表文档的一个部分。
-
-```html
-<section>
-  <h1>Bob Dylan Albums</h1>
-  <p>Some text</p>
-
-  <section>
-    <h2>Blood on the Tracks</h2>
-    <p>Some text</p>
-  </section>
-
-  <section>
-    <h2>Highway 61 Revisited</h2>
-    <p>Some text</p>
-  </section>
-
-  <p>Some text</p>
-</section>
-```
-
-### Time
-
-Time标签用来表示时间。
-
-```html
-<time>2011-07-14</time>
-<time datetime="14:00">2pm</time>
-<time datetime="2011-07-14">July 14th, 2011</time>
-<time datetime="2011-07-14T14:00">2pm on July 14th</time>
-```
-
-### Video
-
-`video`元素用于插入视频元素。
-
-```html
-<video
-  src="#defer-loading"
-  poster="nice-default.jpg
-  autoplay
-/>
-```
-
-下面是将视频全屏插入网页，作为背景 。
-
-```css
-video.fullscreen {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  transform: translate(-50%, -50%);
-}
-```
-
-参考链接
-
-- [Should I use a video as a background?](https://css-tricks.com/should-i-use-a-video-as-a-background/)
 
