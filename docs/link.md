@@ -235,7 +235,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 ### 基本用法
 
-`<link>`标签主要用于将当前网页与相关的外部资源联系起来，通常放在`<head>`元素里面。最常见的用途就是加载样式表。
+`<link>`标签主要用于将当前网页与相关的外部资源联系起来，通常放在`<head>`元素里面。最常见的用途就是加载 CSS 样式表。
 
 ```html
 <link rel="stylesheet" type="text/css" href="theme.css">
@@ -268,7 +268,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码指定 iPhone 设备需要的114像素和72像素的图标。
 
-`<link>`也用于提供文档的相关链接，比如下面是给出文档的 RSS Feed 地址，具体解释见后文。
+`<link>`也用于提供文档的相关链接，比如下面是给出文档的 RSS Feed 地址。
 
 ```html
 <link rel="alternate" type="application/atom+xml" href="/blog/news/atom">
@@ -305,7 +305,47 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 - `search`：提供当前网页的搜索链接。
 - `stylesheet`：加载一张样式表。
 
-下面是`rel="preload"`的一些例子。
+下面是一些示例。
+
+```html
+<!-- 作者信息 -->
+<link rel="author" href="humans.txt">
+
+<!-- 版权信息 -->
+<link rel="license" href="copyright.html">
+
+<!-- 另一个语言的版本 -->
+<link rel="alternate" href="https://es.example.com/" hreflang="es">
+
+<!-- 联系方式 -->
+<link rel="me" href="https://google.com/profiles/someone" type="text/html">
+<link rel="me" href="mailto:name@example.com">
+<link rel="me" href="sms:+15035550125">
+
+<!-- 历史资料 -->
+<link rel="archives" href="http://example.com/archives/">
+
+<!-- 目录 -->
+<link rel="index" href="http://example.com/article/">
+
+<!-- 导航 -->
+<link rel="first" href="http://example.com/article/">
+<link rel="last" href="http://example.com/article/?page=42">
+<link rel="prev" href="http://example.com/article/?page=1">
+<link rel="next" href="http://example.com/article/?page=3">
+```
+
+下面是预处理资源的例子。
+
+```html
+<link rel="dns-prefetch" href="//example.com/">
+<link rel="preconnect" href="https://www.example.com/">
+<link rel="prefetch" href="https://www.example.com/">
+<link rel="prerender" href="http://example.com/">
+<link rel="preload" href="image.png" as="image">
+```
+
+使用`rel="preload"`的时候，需要配合`as`属性，告诉浏览器这些资源的类型，以便正确处理。
 
 ```html
 <link rel="preload" href="style.css" as="style">
@@ -313,8 +353,6 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 ```
 
 上面代码要求浏览器提前下载并缓存`style.css`和`main.js`。
-
-配合使用的`as`属性，告诉浏览器这些资源的类型，以便正确处理。
 
 有时还需要`type`属性，进一步明确 MIME 类型。
 
@@ -396,3 +434,6 @@ console.log('hello world');
 
 上面这段代码，只有浏览器不能执行 JavaScript 代码时才会显示，否则就不会显示。
 
+## 参考链接
+
+- [A free guide to `<head>` elements](https://gethead.info/)
