@@ -99,7 +99,7 @@ modal.addEventListener('click', (event) => {
 });
 ```
 
-# <details>，<summary>
+## `<details>`，`<summary>`
 
 ### 基本用法
 
