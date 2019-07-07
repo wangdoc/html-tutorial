@@ -1,15 +1,15 @@
 - intro.md: HTML 简介
-- url.md: URL
-- attribute.md: 元素属性
+- url.md: URL 简介
+- attribute.md: 元素的属性
 - encode.md: 字符编码
 - semantic.md: 语义结构
-- heading.md: 标题
-- text.md: 文本
-- list.md: 列表
-- image.md: 图像
-- link.md: 链接
-- multimedia.md: 多媒体
-- iframe.md: iframe
-- table.md: 表格
-- form.md: 表单
-- elements.md: 其他元素
+- heading.md: 标题标签
+- text.md: 文本标签
+- list.md: 列表标签
+- image.md: 图像标签
+- link.md: 链接标签
+- multimedia.md: 多媒体标签
+- iframe.md: iframe 标签
+- table.md: 表格标签
+- form.md: 表单标签
+- elements.md: 其他标签
