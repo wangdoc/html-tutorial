@@ -1,4 +1,4 @@
-# 图像
+# 图像标签
 
 图片是互联网的重要组成部分，让网页变得丰富多彩。本章介绍如何在网页插入图片。
 
@@ -40,11 +40,11 @@
 <img src="foo.jpg" alt="示例图片">
 ```
 
-上面代码中，`alt`是图片的说明。图片下载进行中或下载失败时，浏览器会在图片位置，显示文字“示例图片”。
+上面代码中，`alt`是图片的说明。图片下载失败时，浏览器会在图片位置，显示文字“示例图片”。
 
 **（2）width 属性，height 属性**
 
-图片默认以原始大小插入网页，`width`属性和`height`属性可以指定图片显示时的宽度和高度，单位都是像素或百分比。
+图片默认以原始大小插入网页，`width`属性和`height`属性可以指定图片显示时的宽度和高度，单位是像素或百分比。
 
 ```html
 <img src="foo.jpg" width="400" height="300">
@@ -54,7 +54,7 @@
 
 注意，一旦设置了这两个属性，浏览器会在网页中预先留出这个大小的空间，不管图片有没有加载成功。不过，由于图片的显示大小可以用 CSS 设置，所以不建议使用这两个属性。
 
-特殊情况是，`width`属性和`height`属性只设置了一个，另一个没有设置。这时，浏览器会根据图片的原始大小，自动设置对应比例的图片宽度或高度。举例来说，图片大小是 800像素 x 800像素，`width`属性设置成200，那么浏览器会自动将`height`设成200。
+一种特殊情况是，`width`属性和`height`属性只设置了一个，另一个没有设置。这时，浏览器会根据图片的原始大小，自动设置对应比例的图片宽度或高度。举例来说，图片大小是 800像素 x 800像素，`width`属性设置成200，那么浏览器会自动将`height`设成200。
 
 **（3）srcset，sizes**
 
@@ -62,15 +62,15 @@
 
 **（4）referrerpolicy**
 
-`<img>`发起的 HTTP 请求，默认会带有`Referer`的头信息。`referrerpolicy`属性对这个行为进行设置。
+`<img>`导致的图片加载的 HTTP 请求，默认会带有`Referer`的头信息。`referrerpolicy`属性对这个行为进行设置。
 
 **（5）crossorigin**
 
-有些外部资源的下载，对方服务器可能要求跨域认证。`crossorigin`属性告诉浏览器，是否采用跨域的形式下载图片，默认是不采用。下面是简单解释，详细解释请参考相关的 HTTP 教程。
+有时，图片和网页属于不同的网站，网页加载图片就会导致跨域请求，对方服务器可能要求跨域认证。`crossorigin`属性用来告诉浏览器，是否采用跨域的形式下载图片，默认是不采用。
 
-只要打开了这个属性，HTTP 请求的头信息里面，就会加入`origin`字段，给出请求发出的域名，不打开这个属性就不加。
+简单说，只要打开了这个属性，HTTP 请求的头信息里面，就会加入`origin`字段，给出请求发出的域名，不打开这个属性就不加。
 
-该属性可以设为两个值。
+一旦打开该属性，它可以设为两个值。
 
 - `anonymous`：跨域请求不带有用户凭证（通常是 Cookie）。
 - `use-credentials`：跨域请求带有用户凭证。
@@ -102,7 +102,7 @@
 
 ## 响应式图像
 
-网页在不同尺寸的设备上，都有良好的显示效果，叫做[“响应式设计”](http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html)（responsive web design）。响应式设计的网页图像，就是“响应式图像”（responsive image）。
+网页在不同尺寸的设备上，都能产生良好的显示效果，叫做[“响应式设计”](http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html)（responsive web design）。响应式设计的网页图像，就是“响应式图像”（responsive image）。
 
 响应式图像的解决方案有很多，JavaScript 和 CSS 都可以实现。这里只介绍语义性最好的 HTML 方法，浏览器原生支持。
 
@@ -124,7 +124,7 @@
 
 **（2）像素密度**
 
-桌面显示器一般是单倍像素密度，而手机的显示屏往往是多倍像素密度，即多个像素合成为一个像素，称为 Retina 屏幕。图像文件很可能在桌面端很清晰，放到手机上会有点模糊，因为像素扩充了。
+桌面显示器一般是单倍像素密度，而手机的显示屏往往是多倍像素密度，即显示时多个像素合成为一个像素，这种屏幕称为 Retina 屏幕。图像文件很可能在桌面端很清晰，放到手机上会有点模糊，因为图像没有那么高的像素密度，浏览器自动把图像的每个像素复制到周围像素，满足像素密度的要求，导致图像的锐利度有所下降。
 
 **（3）视觉风格**
 
@@ -194,7 +194,7 @@
 
 假定当前设备的屏幕宽度是`480px`，浏览器从`sizes`属性查询得到，图片的显示宽度是`33vw`（即33%），等于`160px`。`srcset`属性里面，正好有宽度等于`160px`的图片，于是加载`foo-160.jpg`。
 
-如果省略`sizes`属性，那么浏览器将根据实际的图像显示宽度，从`srcset`属性选择最接近的图片。另一方面，`sizes`属性必须与`srcset`属性搭配使用，单独使用`sizes`属性是无效的。
+如果省略`sizes`属性，那么浏览器将根据实际的图像显示宽度，从`srcset`属性选择最接近的图片。一旦使用`sizes`属性，就必须与`srcset`属性搭配使用，单独使用`sizes`属性是无效的。
 
 ## `<picture>`
 
@@ -218,7 +218,7 @@
 
 浏览器按照`<source>`标签出现的顺序，依次判断当前设备是否满足`media`属性的媒体查询表达式，如果满足就加载`srcset`属性指定的图片文件，并且不再执行后面的`<source>`标签和`<img>`标签。
 
-`<img>`标签是默认情况下加载的图像，用来满足上面所有`<source>`都不匹配的情况。
+`<img>`标签是默认情况下加载的图像，用来满足上面所有`<source>`都不匹配的情况，或者不支持`<picture>`的老式浏览器。
 
 上面例子中，设备宽度如果不超过`500px`，就加载竖屏的图像，否则加载横屏的图像。
 
@@ -227,13 +227,13 @@
 ```html
 <picture>
   <source srcset="homepage-person@desktop.png,
-                  homepage-person@desktop-2x.png 2x"       
+                  homepage-person@desktop-2x.png 2x"
           media="(min-width: 990px)">
   <source srcset="homepage-person@tablet.png,
-                  homepage-person@tablet-2x.png 2x" 
+                  homepage-person@tablet-2x.png 2x"
           media="(min-width: 750px)">
   <img srcset="homepage-person@mobile.png,
-               homepage-person@mobile-2x.png 2x" 
+               homepage-person@mobile-2x.png 2x"
        alt="Shopify Merchant, Corrine Anestopoulos">
 </picture>
 ```
@@ -260,3 +260,4 @@
 
 - [Responsive Images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/), Jason Grigsby
 - [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), MDN
+
