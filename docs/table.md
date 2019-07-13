@@ -1,6 +1,6 @@
-# 表格
+# 表格标签
 
-表格以行（row）和列（column）的形式展示数据。
+表格（table）以行（row）和列（column）的形式展示数据。
 
 ## `<table>`，`<caption>`
 
@@ -34,7 +34,7 @@
 
 这三个元素都是可选的。如果使用了`<thead>`，那么`<tbody>`和`<tfoot>`一定在`<thead>`的后面。如果使用了`<tbody>`，那么`<tfoot>`一定在`<tbody>`后面。
 
-另外，大型表格内部可以使用多个`<tbody>`，表示连续的多个部分。
+大型表格内部可以使用多个`<tbody>`，表示连续的多个部分。
 
 ## `<colgroup>`，`<col>`
 
@@ -87,7 +87,7 @@
 
 ## `<tr>`
 
-`<tr>`标签表示表格的一行（table row）。如果有`<thead>`、`<tbody>`、`<tfoot>`，就放在这些容器元素之中，否则直接放在`<table>`下面。
+`<tr>`标签表示表格的一行（table row）。如果表格有`<thead>`、`<tbody>`、`<tfoot>`，那么`<tr>`就放在这些容器元素之中，否则直接放在`<table>`的下一级。
 
 ```html
 <table>

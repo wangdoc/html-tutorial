@@ -1,4 +1,4 @@
-# 链接
+# 链接标签
 
 链接（hyperlink）是互联网的核心。它允许用户在页面上，从一个网址跳转到另一个网址，从而把所有资源联系在一起。
 
@@ -28,15 +28,15 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 **（1）href**
 
-`href`属性给出链接指向的网址。它的值应该是一个 URL 或者 URL 的片断。
+`href`属性给出链接指向的网址。它的值应该是一个 URL 或者锚点。
 
-上文已经给出了完整 URL 的例子，下面是一个 URL 片断的例子。URL 片断通常是`#`加上锚点的名字。
+上文已经给出了完整 URL 的例子，下面是锚点的例子。
 
 ```html
 <a href="#demo">示例</a>
 ```
 
-上面代码点击后，浏览器会自动滚动到，当前页面里面`demo`锚点所在的位置。
+上面代码中，`href`属性的值是`#`加上锚点名称。点击后，浏览器会自动滚动，停在当前页面里面`demo`锚点所在的位置。
 
 **（2）hreflang**
 
@@ -51,7 +51,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码表明，`href`属性指向的网址的语言是英语。
 
-该属性的值跟通用的`lang`属性是一样的，语言的代码名可以参考《属性》一章的`lang`属性的介绍。
+该属性的值跟通用属性`lang`一样，语言代码可以参考《属性》一章的`lang`属性的介绍。
 
 **（3）title**
 
@@ -60,27 +60,29 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 ```html
 <a
   href="https://www.example.com/"
-  title="链接的说明信息"
+  title="hello"
 >示例</a>。
 ```
 
+上面代码中，用户鼠标停留在链接上面，会出现文字提示`hello`。
+
 **（4）target**
 
-`target`属性指定如何展示打开的链接。它可以是窗口（窗口）、Tab（标签）和框架的名字。
+`target`属性指定如何展示打开的链接。它可以是在指定的窗口打开，也可以在`<iframe>`里面打开。
 
 ```html
-<p><a href="http://foo.com" target="test">foo.com</a></p>
-<p><a href="http://bar.com" target="test">bar.com</a></p>
+<p><a href="http://foo.com" target="test">foo</a></p>
+<p><a href="http://bar.com" target="test">bar</a></p>
 ```
 
-上面代码中，两个链接都在名叫`test`的窗口打开。首先点击`foo.com`，浏览器发现没有叫做`test`的窗口，就新建一个窗口，起名为`test`，在该窗口打开`foo.com`。然后，用户又点击`bar.com`，由于已经存在`test`窗口，浏览器就在该窗口打开`bar.com`，取代里面已经打开的`foo.com`。
+上面代码中，两个链接都在名叫`test`的窗口打开。首先点击链接`foo`，浏览器发现没有叫做`test`的窗口，就新建一个窗口，起名为`test`，在该窗口打开`foo.com`。然后，用户又点击链接`bar`，由于已经存在`test`窗口，浏览器就在该窗口打开`bar.com`，取代里面已经打开的`foo.com`。
 
-`target`属性也可以是以下四个关键字之一。
+`target`属性的值也可以是以下四个关键字之一。
 
 - `_self`：当前窗口打开，这是默认值。
 - `_blank`：新窗口打开。
-- `_parent`：上层窗口打开，这通常用于从父窗口打开的子窗口，或者框架里面的子窗口。如果当前窗口没有上层窗口，这个值等同于`_self`。
-- `_top`：顶层窗口打开。如果当前窗口就是上层窗口，这个值等同于`_self`。
+- `_parent`：上层窗口打开，这通常用于从父窗口打开的子窗口，或者`<iframe>`里面的链接。如果当前窗口没有上层窗口，这个值等同于`_self`。
+- `_top`：顶层窗口打开。如果当前窗口就是顶层窗口，这个值等同于`_self`。
 
 ```html
 <a
@@ -89,7 +91,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 >示例链接</a>
 ```
 
-上面代码点击后，浏览器会新建一个窗口，在该窗口打开链接。
+上面代码点击后，浏览器会新建一个窗口，在该窗口打开链接，并且新窗口没有名字。
 
 注意，使用`target`属性的时候，最好跟`rel="noreferrer"`一起使用，这样可以避免安全风险。
 
@@ -103,21 +105,21 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码的`rel`属性，说明链接是当前页面的帮助文档。
 
-`<a>`元素的`rel`属性的取值，有以下这些。
+下面是一些常见的`rel`属性的值。
 
-- alternate：当前文档的另一种形式，比如翻译。
-- author：作者链接。
-- bookmark：用作书签的永久地址。
-- external：当前文档的外部参考文档。
-- help：帮助链接。
-- license：许可证链接。
-- next：系列文档的下一篇。
-- nofollow：告诉搜索引擎忽略该链接，主要用于用户提交的内容，防止有人企图通过添加链接，提高该链接的搜索排名。
-- noreferrer：告诉浏览器打开链接时，不要将当前网址作为 HTTP 头信息的`Referer`字段发送出去，这样可以隐藏点击的来源。
-- noopener：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的`window.opener`属性引用原始窗口，这样就提高了安全性。
-- prev：系列文档的上一篇。
-- search：文档的搜索链接。
-- tag：文档的标签链接。
+- `alternate`：当前文档的另一种形式，比如翻译。
+- `author`：作者链接。
+- `bookmark`：用作书签的永久地址。
+- `external`：当前文档的外部参考文档。
+- `help`：帮助链接。
+- `license`：许可证链接。
+- `next`：系列文档的下一篇。
+- `nofollow`：告诉搜索引擎忽略该链接，主要用于用户提交的内容，防止有人企图通过添加链接，提高该链接的搜索排名。
+- `noreferrer`：告诉浏览器打开链接时，不要将当前网址作为 HTTP 头信息的`Referer`字段发送出去，这样可以隐藏点击的来源。
+- `noopener`：告诉浏览器打开链接时，不让链接窗口通过 JavaScript 的`window.opener`属性引用原始窗口，这样就提高了安全性。
+- `prev`：系列文档的上一篇。
+- `search`：文档的搜索链接。
+- `tag`：文档的标签链接。
 
 **（6）referrerpolicy**
 
@@ -167,17 +169,16 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码中，下载文件的原始文件名是`foo.exe`。点击后，下载对话框提示的文件名是`bar.exe`。
 
-注意，如果链接点击后，服务器的 HTTP 回应设置了头信息`Content-Disposition`，并且头信息的值与`download`属性不一致，那么头信息优先，下载时将显示其设置的文件名。
+注意，如果链接点击后，服务器的 HTTP 回应的头信息设置了`Content-Disposition`字段，并且该字段的值与`download`属性不一致，那么该字段优先，下载时将显示其设置的文件名。
 
-`download`属性还有一个用途，就是有些地址不是真实网址，而是数据网址，比如`data:`开头的网址，直接描述了数据内容。
+`download`属性还有一个用途，就是有些地址不是真实网址，而是数据网址，比如`data:`开头的网址。这时，`download`属性可以为虚拟网址指定下载的文件名。
 
 ```html
 <a href="data:,Hello%2C%20World!">点击</a>
 ```
 
-上面链接点击后，会打开一个虚拟网页，上面显示`Hello World!`。这个虚拟网页的内容，都在数据网址里面指定了。
+上面链接点击后，会打开一个虚拟网页，上面显示`Hello World!`。
 
-这时，`download`属性可以用于为虚拟网址，指定下载的文件名。
 
 ```html
 <a
@@ -186,7 +187,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 >点击</a>
 ```
 
-上面链接点击后，下载的`hello.txt`文件内容就是“hello.txt”。
+上面链接点击后，下载的`hello.txt`文件内容就是“Hello, World!”。
 
 ## 邮件链接
 
@@ -200,12 +201,12 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 除了邮箱，邮件协议还允许指定其他几个邮件要素。
 
-- subject：主题
-- cc：抄送
-- bcc：密送
-- body：邮件内容
+- `subject`：主题
+- `cc`：抄送
+- `bcc`：密送
+- `body`：邮件内容
 
-指定方法是将这些邮件要素，以查询字符串的方式，附加在邮箱地址后面。
+使用方法是将这些邮件要素，以查询字符串的方式，附加在邮箱地址后面。
 
 ```html
 <a
@@ -243,7 +244,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码为网页加载样式表`theme.css`。
 
-除了默认样式表，网页还可以加载替代样式表，即默认情况不生效、需要用户手动切换的样式表。
+除了默认样式表，网页还可以加载替代样式表，即默认不生效、需要用户手动切换的样式表。
 
 ```html
 <link href="default.css" rel="stylesheet" title="Default Style">
@@ -251,7 +252,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 <link href="basic.css" rel="alternate stylesheet" title="Basic">
 ```
 
-上面代码中，`default.css`是默认样式表，默认就会生效。`fancy.css`和`basic.css`是替换样式表（`rel="alternate stylesheet"`），默认情况下不生效。`title`属性这时是必需的，会列在浏览器菜单里面，供用户选择，以替代默认样式表。
+上面代码中，`default.css`是默认样式表，默认就会生效。`fancy.css`和`basic.css`是替换样式表（`rel="alternate stylesheet"`），默认不生效。`title`属性在这里是必需的，用来在浏览器菜单里面列出这些样式表的名字，供用户选择，以替代默认样式表。
 
 `<link>`还可以加载网站的 favicon 图标文件。
 
@@ -259,7 +260,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 ```
 
-手机访问时，网站通常需要提供不同分辨率使用的图标文件。
+手机访问时，网站通常需要提供不同分辨率的图标文件。
 
 ```html
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon114.png">
@@ -324,25 +325,17 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 <link rel="next" href="http://example.com/article/?page=3">
 ```
 
+### 资源的预加载
+
 某些情况下，你需要浏览器预加载某些资源，也就是先把资源缓存下来，等到使用的时候，就不用再从网上下载了，立即就能使用。预处理指令可以做到这一点。
+
+预加载主要有下面五种类型。
+
+（1）`<link rel="preload">`
 
 `<link rel="preload">`告诉浏览器尽快下载并缓存资源（如脚本或样式表），该指令优先级较高，浏览器肯定会执行。当加载页面几秒钟后需要该资源时，它会很有用。下载后，浏览器不会对资源执行任何操作，脚本未执行，样式表未应用。它只是缓存，当其他东西需要它时，它立即可用。
 
-`<link rel="prefetch">`的使用场合是，如果后续的页面需要某个资源，并且希望预加载该资源，以便加速页面渲染。该指令不是强制性的，优先级较低，浏览器不一定会执行。这意味着，浏览器可以不下载该资源，比如连接速度很慢时。
-
-`<link rel="preconnect">`要求浏览器提前与某个域名建立 TCP 连接。当你知道，很快就会请求该域名时，这会很有帮助。
-
-`<link rel="dns-prefetch">`要求浏览器提前执行某个域名的 DNS 解析。
-
-`<link rel="prerender">`要求浏览器加载某个网页，并且提前渲染它。用户点击指向该网页的链接时，就会立即呈现该页面。如果确定用户下一步会访问该页面，这会很有帮助。
-
-下面是一些示例。
-
 ```html
-<link rel="dns-prefetch" href="//example.com/">
-<link rel="preconnect" href="https://www.example.com/">
-<link rel="prefetch" href="https://www.example.com/">
-<link rel="prerender" href="http://example.com/">
 <link rel="preload" href="image.png" as="image">
 ```
 
@@ -387,6 +380,38 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 上面代码中，`onload`指定的回调函数会在脚本下载完成后执行，立即插入页面。
 
+（2）`<link rel="prefetch">`
+
+`<link rel="prefetch">`的使用场合是，如果后续的页面需要某个资源，并且希望预加载该资源，以便加速页面渲染。该指令不是强制性的，优先级较低，浏览器不一定会执行。这意味着，浏览器可以不下载该资源，比如连接速度很慢时。
+
+```html
+<link rel="prefetch" href="https://www.example.com/">
+```
+
+（3）`<link rel="preconnect">`
+
+`<link rel="preconnect">`要求浏览器提前与某个域名建立 TCP 连接。当你知道，很快就会请求该域名时，这会很有帮助。
+
+```html
+<link rel="preconnect" href="https://www.example.com/">
+```
+
+（4）`<link rel="dns-prefetch">`
+
+`<link rel="dns-prefetch">`要求浏览器提前执行某个域名的 DNS 解析。
+
+```html
+<link rel="dns-prefetch" href="//example.com/">
+```
+
+（5）`<link rel="prerender">`
+
+`<link rel="prerender">`要求浏览器加载某个网页，并且提前渲染它。用户点击指向该网页的链接时，就会立即呈现该页面。如果确定用户下一步会访问该页面，这会很有帮助。
+
+```html
+<link rel="prerender" href="http://example.com/">
+```
+
 ### media 属性
 
 `media`属性给出外部资源生效的媒介条件。
@@ -421,7 +446,7 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 ## `<script>`
 
-`<script>`用于加载脚本代码，目前主要是 JavaScript 代码。
+`<script>`用于加载脚本代码，目前主要是加载 JavaScript 代码。
 
 ```html
 <script>
@@ -439,7 +464,7 @@ console.log('hello world');
 
 上面代码会加载`javascript.js`脚本文件，并执行。
 
-`type`属性给出脚本的类型，默认是 JavaScript 代码，所以可省略。
+`type`属性给出脚本的类型，默认是 JavaScript 代码，所以可省略。完整的写法其实是下面这样。
 
 ```html
 <script type="text/javascript" src="javascript.js"></script>
@@ -451,14 +476,14 @@ console.log('hello world');
 <script type="module" src="main.js"></script>
 ```
 
-对于那些不支持 ES6 模块的浏览器，可以设置`nomodule`属性。支持 ES6 模块的浏览器，就会不加载指定的脚本。这个属性通常与`type="module"`配合使用，作为老式浏览器的回退方案。
+对于那些不支持 ES6 模块的浏览器，可以设置`nomodule`属性。支持 ES6 模块的浏览器，会不加载指定的脚本。这个属性通常与`type="module"`配合使用，作为老式浏览器的回退方案。
 
 ```html
 <script type="module" src="main.js"></script>
 <script nomodule src="fallback.js"></script>
 ```
 
-`<script>`还有一些其他属性，大部分跟 JavaScript 语言有关，可以参考相关的 JavaScript 教程。
+`<script>`还有下面一些其他属性，大部分跟 JavaScript 语言有关，可以参考相关的 JavaScript 教程。
 
 - `async`：该属性指定 JavaScript 代码为异步执行，不是造成阻塞效果，JavaScript 代码默认是同步执行。
 - `defer`：该属性指定 JavaScript 代码不是立即执行，而是页面解析完成后执行。
@@ -482,3 +507,4 @@ console.log('hello world');
 ## 参考链接
 
 - [A free guide to `<head>` elements](https://gethead.info/)
+
