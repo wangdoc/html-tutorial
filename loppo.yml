@@ -6,3 +6,5 @@ customization: false
 themeDir: loppo-theme
 direction: ltr
 id: html
+hasComments: true
+isTutorial: true
