@@ -30,7 +30,7 @@ https://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#anchor
 
 互联网支持多种协议，必须指明网址使用哪一种协议，默认是 HTTP 协议。也就是说，如果省略协议，直接在浏览器地址栏输入`www.example.com`，那么浏览器默认会访问`http://www.example.com`。HTTPS 是 HTTP 的加密版本，出于安全考虑，越来越多的网站使用这个协议。
 
-HTTP 和 HTTPS 的协议名称后面，紧跟着两个斜杠和一个冒号（`//:`）。其他协议不一定如此，比如邮件地址协议`mailto:`，协议名后面只有一个冒号，比如`mailto:foo@example.com`。
+HTTP 和 HTTPS 的协议名称后面，紧跟着一个冒号和两个斜杠（`://`）。其他协议不一定如此，邮件地址协议`mailto:`的协议名后面只有一个冒号，比如`mailto:foo@example.com`。
 
 ### 主机
 
