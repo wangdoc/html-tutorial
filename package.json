@@ -7,11 +7,15 @@
     "doc": "docs"
   },
   "scripts": {
-    "prepush": "npm update",
     "build": "loppo --site \"HTML 教程\" --id html --theme wangdoc",
     "build-and-commit": "npm run build && npm run commit",
     "commit": "gh-pages --dist dist --dest dist/html --branch master --repo git@github.com:wangdoc/website.git",
     "chapter": "loppo chapter"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm update"
+    }
   },
   "repository": {
     "type": "git",
@@ -29,7 +33,7 @@
   "homepage": "https://github.com/wangdoc/html-tutorial#readme",
   "dependencies": {
     "gh-pages": "^2.1.1",
-    "husky": "^3.0.3",
+    "husky": "^3.0.4",
     "loppo": "^0.6.15",
     "loppo-theme-wangdoc": "^0.3.15"
   }

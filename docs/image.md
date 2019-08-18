@@ -278,4 +278,5 @@
 
 - [Responsive Images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/), Jason Grigsby
 - [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), MDN
+- [Native lazy-loading for the web](https://web.dev/native-lazy-loading), Houssein Djirdeh
 
