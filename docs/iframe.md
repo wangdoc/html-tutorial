@@ -59,3 +59,25 @@
 
 注意，不要同时设置`allow-scripts`和`allow-same-origin`属性，这将使得嵌入的网页可以改变或删除`sandbox`属性。
 
+## loading 属性
+
+`<iframe>`指定的网页会立即加载，有时这不是希望的行为。`<iframe>`滚动进入视口以后再加载，这样会比较节省带宽。
+
+`loading`属性可以触发`<iframe>`网页的懒加载。该属性可以取以下三个值。
+
+- `auto`：浏览器的默认行为，与不使用`loading`属性效果相同。
+- `lazy`：`<iframe>`的懒加载，即将滚动进入视口时开始加载。
+- `eager`：立即加载资源，无论在页面上的位置如何。
+
+```html
+<iframe src="https://example.com" loading="lazy"></iframe>
+```
+
+上面代码会启用`<iframe>`的懒加载。
+
+有一点需要注意，如果`<iframe>`是隐藏的，则`loading`属性无效，将会立即加载。只要满足以下任一个条件，Chrome 浏览器就会认为`<iframe>`是隐藏的。
+
+> - `<iframe>`的宽度和高度为4像素或更小。
+> - 样式设为`display: none`或`visibility: hidden`。
+> - 使用定位坐标为负`X`或负`Y`，将`<iframe`>放置在屏幕外。
+
