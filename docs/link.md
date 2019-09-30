@@ -494,7 +494,7 @@ console.log('hello world');
 
 ## `<noscript>`
 
-`<noscript>`标签用于浏览器不支持或关闭 JavaScript 时，所要显示的内容。
+`<noscript>`标签用于浏览器不支持或关闭 JavaScript 时，所要显示的内容。用户关闭 JavaScript 可能是为了节省带宽，以延长手机电池寿命，或者为了防止追踪，保护隐私。
 
 ```html
 <noscript>
