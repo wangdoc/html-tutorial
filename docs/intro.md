@@ -202,7 +202,27 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《标
 
 `<meta>`标签用于设置或说明网页的元数据，必须放在`<head>`里面。一个`<meta>`标签就是一项元数据，网页可以有多个`<meta>`。
 
-**（1）name 属性，content 属性**
+一般来说，网页至少应该具有以下两个`<meta>`标签，而且必须在`<head>`的最前面。
+
+```html
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Title</title>
+</head>
+```
+
+**（1）charset 属性**
+
+`<meta>`有一个`charset`属性，指定网页的编码方式，该属性非常重要。如果设置得不正确，浏览器可能无法正确解码，就会出现乱码。
+
+```html
+<meta charset="utf-8">
+```
+
+上面代码声明，网页为`utf-8`编码。虽然可以使用其他的编码方式，但几乎总是应该采用 UTF-8。注意，声明的编码方式，应该与网页实际的编码方式一致，即声明了`utf-8`，网页就应该使用 UTF-8 编码保存。
+
+**（2）name 属性，content 属性**
 
 `<meta>`的`name`属性表示元数据的名字，`content`属性表示元数据的值。
 
@@ -216,19 +236,25 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《标
 
 上面代码包含了三个元数据：`description`是网页内容的描述，`keywords`是网页内容的关键字，`author`是网页作者。
 
-元数据有很多种，大部分涉及浏览器内部工作机制，或者特定的使用场景，这里就不一一介绍了。
-
-**（2）charset 属性**
-
-`<meta>`还有一个`charset`属性，指定网页内容的编码方式，该属性非常重要。如果设置得不正确，浏览器可能无法正确解码，就会出现乱码。
+元数据有很多种，大部分涉及浏览器内部工作机制，或者特定的使用场景，这里就不一一介绍了。下面是一些例子。
 
 ```html
-<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="application-name" content="Application Name">
+<meta name="generator" content="program">
+<meta name="subject" content="your document's subject">
+<meta name="referrer" content="no-referrer">
 ```
 
-上面代码声明，网页为`utf-8`编码。虽然可以使用其他的编码方式，但基本上总是应该采用 UTF-8。
+**（3）http-equiv 属性，content 属性**
 
-注意，声明的编码方式，应该与网页实际的编码方式一致，即声明了`utf-8`，网页就应该使用 UTF-8 编码保存。
+`http-equiv`属性用来覆盖 HTTP 回应的头信息字段，`content`属性是该字段的内容。
+
+```html
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+```
+
+上面代码可以覆盖 HTTP 回应的`Content-Security-Policy`字段。
 
 ### `<title>`
 
