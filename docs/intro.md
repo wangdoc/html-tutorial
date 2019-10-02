@@ -256,6 +256,14 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《标
 
 上面代码可以覆盖 HTTP 回应的`Content-Security-Policy`字段。
 
+下面是另一些例子。
+
+```html
+<meta http-equiv="Content-Type" content="Type=text/html; charset=utf-8">
+<meta http-equiv="refresh" content="30">
+<meta http-equiv="refresh" content="30;URL='http://website.com'">
+```
+
 ### `<title>`
 
 `<title>`标签用于指定网页的标题，会显示在浏览器窗口的标题栏。

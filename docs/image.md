@@ -118,6 +118,13 @@
 
 除了图像，`<figure>`还可以封装引言、代码、诗歌等等。它等于是一个将主体内容与附加信息，封装在一起的语义容器。
 
+```html
+<figure>
+  <p><code>const foo = 'hello';</code></p>
+  <figcaption>JavaScript 代码示例</figcaption>
+</figure>
+```
+
 ## 响应式图像
 
 网页在不同尺寸的设备上，都能产生良好的显示效果，叫做[“响应式设计”](http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html)（responsive web design）。响应式设计的网页图像，就是“响应式图像”（responsive image）。

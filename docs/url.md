@@ -144,9 +144,14 @@ URL 还可以使用两个特殊简写，表示特定位置。
 </head>
 ```
 
-`<base>`标签的`href`属性给出计算的基准网址，`target`属性给出如何打开链接的说明（参见《链接》一章）。
-
-已知计算基准是`https://www.example.com/files/`，那么相对 URL `foo.html`，就可以转成绝对 URL `https://www.example.com/files/foo.html`。
+`<base>`标签的`href`属性给出计算的基准网址，`target`属性给出如何打开链接的说明（参见《链接》一章）。已知计算基准是`https://www.example.com/files/`，那么相对 URL `foo.html`，就可以转成绝对 URL `https://www.example.com/files/foo.html`。
 
 注意，`<base>`标签必须至少具有`href`属性或`target`属性之一。
+
+```html
+<base href="http://foo.com/app/">
+<base target="_blank">
+```
+
+一旦设置了`<base>`，就对整个网页都有效。如果要改变某个链接的行为，只能用绝对链接替代相对链接。尤其需要注意锚点，这时锚点也是针对`<base>`计算的，而不是针对当前网页的 URL。
 

@@ -198,6 +198,39 @@ HTML 网页的内容默认是用户不能编辑，`contenteditable`属性允许�
 
 这个属性看上去像布尔属性，但是其实是枚举属性，所以最好不要省略它的值。如果没有指定这个属性，浏览器将自行决定是否打开拼写检查。
 
+### `data-`属性
+
+`data-`属性用于放置自定义数据。如果没有其他属性或元素合适放置数据，就可以放在`data-`属性。
+
+```html
+<a href="#" class="tooltip" data-tip="this is the tip!">链接</a>
+```
+
+上面代码中，`data-tip`用于防止链接的提示文字。
+
+由于`data-`属性只能通过 CSS 或 JavaScript 利用，所以这里不做详细介绍了。下面是 CSS 的例子。
+
+```css
+/* HTML 代码如下
+<div data-role="mobile">
+Mobile only content
+</div>
+*/
+div[data-role="mobile"] {
+  display:none;
+}
+
+/* HTML 代码如下
+<div class="test" data-content="This is the div content">test</div>​
+*/
+.test {
+  display: inline-block;
+}
+.test:after {
+  content: attr(data-content);
+}
+```
+
 ### 事件处理属性
 
 除了上面这些属性，全局属性还包括事件处理属性（event handler），用来响应用户的动作。这些属性的值都是 JavaScript 代码，请参考 JavaScript 教程，这里只列出这些属性的名单。

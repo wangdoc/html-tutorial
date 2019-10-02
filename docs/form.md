@@ -802,6 +802,17 @@ Content-Type: text/plain
 
 上面代码中，`<input>`生成一个文本输入框，用户可以输入文本。`<input>`的`list`属性指定关联的`<datalist>`的`id`属性。`<datalist>`的数据列表用于输入建议，用户点击输入框的时候，会显示一个下拉菜单，里面是建议的输入项。并且还会自动匹配用户已经输入的字符，缩小可选的范围，比如用户输入“香”，则只会显示“香草”这一项。
 
+`<option>`标签还可以加入`label`属性，作为说明文字。Chrome 浏览器会将其显示在`value`的下一行。
+
+```html
+<datalist id="ide">
+  <option value="Brackets" label="by Adobe" />
+  <option value="Coda" label="by Panic" />
+</datalist>
+```
+
+上面代码的渲染结果是，Chrome 浏览器会在下拉列表显示`value`值（比如`Brackets`），然后在其下方以小字显示`label`值（比如`by Adobe`）。
+
 ## `<textarea>`
 
 `<textarea>`是一个块级元素，用来生成多行的文本框。

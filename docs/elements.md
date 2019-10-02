@@ -169,6 +169,20 @@ summary::-webkit-details-marker {
 }
 ```
 
+下面的样式是另一种替换箭头的方法。
+
+```css
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:before {
+  content: "\2714";
+  color: #696f7c;
+  margin-right: 5px;
+}
+```
+
+
 ### JavaScript API
 
 `Details`元素的`open`属性返回`<details>`当前是打开还是关闭。
