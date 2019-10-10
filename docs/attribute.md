@@ -206,7 +206,7 @@ HTML 网页的内容默认是用户不能编辑，`contenteditable`属性允许�
 <a href="#" class="tooltip" data-tip="this is the tip!">链接</a>
 ```
 
-上面代码中，`data-tip`用于防止链接的提示文字。
+上面代码中，`data-tip`用于放置链接的提示文字。
 
 由于`data-`属性只能通过 CSS 或 JavaScript 利用，所以这里不做详细介绍了。下面是 CSS 的例子。
 
