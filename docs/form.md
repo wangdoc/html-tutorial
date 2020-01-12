@@ -806,8 +806,8 @@ Content-Type: text/plain
 
 ```html
 <datalist id="ide">
-  <option value="Brackets" label="by Adobe" />
-  <option value="Coda" label="by Panic" />
+  <option value="Brackets" label="by Adobe">
+  <option value="Coda" label="by Panic">
 </datalist>
 ```
 
@@ -847,8 +847,8 @@ Content-Type: text/plain
 `<output>`标签是一个行内元素，用于显示用户操作的结果。
 
 ```html
-<input type="number" name="a" value="10" /> +
-<input type="number" name="b" value="10" /> =
+<input type="number" name="a" value="10"> +
+<input type="number" name="b" value="10"> =
 <output name="result">20</output>
 ```
 
