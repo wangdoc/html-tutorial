@@ -789,7 +789,7 @@ Content-Type: text/plain
 
 ```html
 <label for="ice-cream-choice">冰淇淋：</label>
-<input type="text" list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
+<input type="text" list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice">
 
 <datalist id="ice-cream-flavors">
   <option value="巧克力">
