@@ -155,7 +155,7 @@ Content-Type: text/plain
 
 ```html
 <label for="username">用户名：</label>
-<input type="text" name="username">
+<input type="text" id="username" name="username">
 <label for="username"><abbr title="required">*</abbr></label>
 ```
 
