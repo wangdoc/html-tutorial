@@ -494,12 +494,12 @@ Content-Type: text/plain
   <option value="20">
   <option value="30">
   <option value="40">
-  <option value="50" label="0%">
+  <option value="50" label="50%">
   <option value="60">
   <option value="70">
   <option value="80">
   <option value="90">
-  <option value="100" label="0%">
+  <option value="100" label="100%">
 </datalist>
 ```
 
@@ -789,7 +789,7 @@ Content-Type: text/plain
 
 ```html
 <label for="ice-cream-choice">冰淇淋：</label>
-<input type="text" list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
+<input type="text" list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice">
 
 <datalist id="ice-cream-flavors">
   <option value="巧克力">
@@ -806,8 +806,8 @@ Content-Type: text/plain
 
 ```html
 <datalist id="ide">
-  <option value="Brackets" label="by Adobe" />
-  <option value="Coda" label="by Panic" />
+  <option value="Brackets" label="by Adobe">
+  <option value="Coda" label="by Panic">
 </datalist>
 ```
 
@@ -847,8 +847,8 @@ Content-Type: text/plain
 `<output>`标签是一个行内元素，用于显示用户操作的结果。
 
 ```html
-<input type="number" name="a" value="10" /> +
-<input type="number" name="b" value="10" /> =
+<input type="number" name="a" value="10"> +
+<input type="number" name="b" value="10"> =
 <output name="result">20</output>
 ```
 
