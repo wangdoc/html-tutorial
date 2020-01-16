@@ -155,7 +155,7 @@ Content-Type: text/plain
 
 ```html
 <label for="username">用户名：</label>
-<input type="text" name="username">
+<input type="text" id="username" name="username">
 <label for="username"><abbr title="required">*</abbr></label>
 ```
 
@@ -295,7 +295,7 @@ Content-Type: text/plain
 `type="checkbox"`是复选框，允许选择或取消选择该选项。
 
 ```html
-<input type="checkbox" name="agreement" checked>
+<input type="checkbox" id="agreement" name="agreement" checked>
 <label for="agreement">是否同意</label>
 ```
 
