@@ -107,7 +107,7 @@
 
 ## `<figure>`，`<figcaption>`
 
-`<figure>`标签可以理解是一个图像区块，将图像和相关信息封装在一起。`<figcaption>`是它的可选的子元素，表示图像的标题。
+`<figure>`标签可以理解为一个图像区块，将图像和相关信息封装在一起。`<figcaption>`是它的可选子元素，表示图像的文本描述，通常用于放置标题，可以出现多个。
 
 ```html
 <figure>
@@ -120,8 +120,8 @@
 
 ```html
 <figure>
-  <p><code>const foo = 'hello';</code></p>
   <figcaption>JavaScript 代码示例</figcaption>
+  <p><code>const foo = 'hello';</code></p>
 </figure>
 ```
 
