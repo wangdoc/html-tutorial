@@ -188,7 +188,44 @@
 
 - `row`：该行的所有单元格，都与该标题单元格相关。
 - `col`：该列的所有单元格，都与该标题单元格相关。
-- `rowgroup`：多行组成的一个行组的所有单元格，都与该标题单元格相关。
-- `colgroup`：多列组成的一个列组的所有单元格，都与该标题单元格相关。
+- `rowgroup`：多行组成的一个行组的所有单元格，都与该标题单元格相关，可以与`rowspan`属性配合使用。
+- `colgroup`：多列组成的一个列组的所有单元格，都与该标题单元格相关，可以与`colspan`属性配合使用。
 - `auto`：默认值，表示由浏览器自行决定。
+
+下面是一个`colgroup`属性和`rowgroup`属性的例子。
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th scope="col">海报名称</th>
+      <th scope="col">颜色</th>
+      <th colspan="3" scope="colgroup">尺寸</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" scope="rowgroup">Zodiac</th>
+      <th scope="row">Full color</th>
+      <td>A2</td>
+      <td>A3</td>
+      <td>A4</td>
+    </tr>
+    <tr>
+      <th scope="row">Black and white</th>
+      <td>A1</td>
+      <td>A2</td>
+      <td>A3</td>
+    </tr>
+    <tr>
+      <th scope="row">Sepia</th>
+      <td>A3</td>
+      <td>A4</td>
+      <td>A5</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+上面的例子中，列标题“尺寸”的`scope`属性为`colgroup`，表示这个标题单元格对应多列（本例为3列）；行标题的`scope`属性为`rowgroup`，表示这个标题单元格对应多行（本例为2行）。
 
