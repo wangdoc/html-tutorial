@@ -10,13 +10,13 @@ https://www.example.com/path/index.html
 
 所谓资源，可以简单理解成各种可以通过互联网访问的文件，比如网页、图像、音频、视频、JavaScript 脚本等等。只有知道了它们的 URL，才可能在互联网上获取它们。
 
-只要资源可以互联网访问，它就必然有对应的 URL。一个 URL 对应一个资源，但是同一个资源可能对应多个 URL。
+只要资源可以通过互联网访问，它就必然有对应的 URL。一个 URL 对应一个资源，但是同一个资源可能对应多个 URL。
 
 URL 是互联网的基础。互联网之所以“互联”，就是因为网页可以通过“链接”（link），包含其他 URL。用户只要点击，就可以从一个 URL 跳转到另一个 URL，前往不同的网站。
 
 ## 网址的组成部分
 
-URL 由多个部分组成。为了讲解，下面是一个比较复杂的 URL。
+URL 由多个部分组成。下面是一个比较复杂的 URL，实际的 URL 通常不会有这么多部分。
 
 ```html
 https://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#anchor
