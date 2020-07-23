@@ -43,9 +43,9 @@
 - `novalidate`：布尔属性，表单提交时是否取消验证。
 - `target`：在哪个窗口展示服务器返回的数据，可能的值有`_self`（当前窗口），`_blank`（新建窗口），`_parent`（父窗口），`_top`（顶层窗口），`<iframe>`标签的`name`属性（即表单返回结果展示在`<iframe>`窗口）。
 
-### encrypt 属性
+### enctype 属性
 
-`<form>`表单的`encrypt`属性，指定了采用 POST 方法提交数据时，浏览器给出的数据的 MIMI 类型。该属性可以取以下值。
+`<form>`表单的`enctype`属性，指定了采用 POST 方法提交数据时，浏览器给出的数据的 MIME 类型。该属性可以取以下值。
 
 （1）`application/x-www-form-urlencoded`
 
