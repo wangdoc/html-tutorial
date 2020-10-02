@@ -509,7 +509,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 `<rbc>`标签表示一组文字，通常包含多个`<rb>`元素。`<rtc>`标签表示一组语音注释，跟`<rbc>`对应。
 
-```bash
+```html
 <ruby style="ruby-position: under;">
   <rbc>
     <rb>汉</rb><rp>(</rp><rt>han</rt><rp>)</rp>
