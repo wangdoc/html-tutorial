@@ -383,7 +383,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 ```html
 <footer>
   <address>
-    文章的相关问题请联系<a href='mailto:zhangsan@example.com'>张三
+    文章的相关问题请联系<a href="mailto:zhangsan@example.com">张三
     McClure</a>。
   </address>
 </footer>
@@ -446,7 +446,7 @@ Fernstraßen<wbr>bau<wbr>privat<wbr>finanzierungs<wbr>gesetz
 
 ```html
 <p>
-<dfn><abbr title="acquired immune deficiency syndrome">AIDS</abbr><dfn>
+<dfn><abbr title="acquired immune deficiency syndrome">AIDS</abbr></dfn>
 的全称是获得性免疫缺陷综合征。
 </p>
 ```

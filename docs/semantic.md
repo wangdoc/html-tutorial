@@ -85,7 +85,7 @@ HTML 标签的一个重要作用，就是声明网页元素的性质，使得用
   <footer>
     <p>© 禁止转贴</p>
   </footer>
-</body>
+</article>
 ```
 
 `<footer>`不能嵌套，即内部不能放置另一个`<footer>`，也不能放置`<header>`。
