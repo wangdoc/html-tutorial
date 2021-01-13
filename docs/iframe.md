@@ -52,7 +52,7 @@
 - `allow-presentation`：允许嵌入的网页使用 Presentation API。
 - `allow-same-origin`：不打开该项限制，将使得所有加载的网页都视为跨域。
 - `allow-scripts`：允许嵌入的网页运行脚本（但不创建弹出窗口）。
--  `allow-storage-access-by-user-activation`：允许在用户激动的情况下，嵌入的网页通过 Storage Access API 访问父窗口的储存。
+- `allow-storage-access-by-user-activation`：`sandbox`属性同时设置了这个值和`allow-same-origin`的情况下，允许`<iframe>`嵌入的第三方网页通过用户发起`document.requestStorageAccess()`请求，经由 Storage Access API 访问父窗口的 Cookie。
 - `allow-top-navigation`：允许嵌入的网页对顶级窗口进行导航。
 - `allow-top-navigation-by-user-activation`：允许嵌入的网页对顶级窗口进行导航，但必须由用户激活。
 - `allow-downloads-without-user-activation`：允许在没有用户激活的情况下，嵌入的网页启动下载。
