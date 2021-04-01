@@ -781,7 +781,7 @@ Content-Type: text/plain
 它的属性如下。
 
 - `disabled`：布尔设置，是否禁用该组。一旦设置，该组所有的菜单项都不可选。
-- `label`：菜单项的标题。
+- `label`：菜单项分组的标题。
 
 ## `<datalist>`
 
