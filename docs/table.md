@@ -227,5 +227,38 @@
 </table>
 ```
 
-上面的例子中，列标题“尺寸”的`scope`属性为`colgroup`，表示这个标题单元格对应多列（本例为3列）；行标题的`scope`属性为`rowgroup`，表示这个标题单元格对应多行（本例为2行）。
+上面的例子中，列标题“尺寸”的`scope`属性为`colgroup`，表示这个标题单元格对应多列（本例为3列）；行标题的`scope`属性为`rowgroup`，表示这个标题单元格对应多行（本例为3行）。
+
+渲染结果就是下面的样子。
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">海报名称</th>
+      <th scope="col">颜色</th>
+      <th colspan="3" scope="colgroup">尺寸</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" scope="rowgroup">Zodiac</th>
+      <th scope="row">Full color</th>
+      <td>A2</td>
+      <td>A3</td>
+      <td>A4</td>
+    </tr>
+    <tr>
+      <th scope="row">Black and white</th>
+      <td>A1</td>
+      <td>A2</td>
+      <td>A3</td>
+    </tr>
+    <tr>
+      <th scope="row">Sepia</th>
+      <td>A3</td>
+      <td>A4</td>
+      <td>A5</td>
+    </tr>
+  </tbody>
+</table>
 
