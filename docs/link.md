@@ -506,5 +506,5 @@ console.log('hello world');
 
 ## 参考链接
 
-- [A free guide to `<head>` elements](https://gethead.info/)
+- [A free guide to `<head>` elements](https://htmlhead.dev/)
 
