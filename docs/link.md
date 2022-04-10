@@ -133,6 +133,27 @@ URL 是链接指向的地址。链接不仅可以指向另一个网页，也可�
 
 `ping`属性指定一个网址，用户点击的时候，会向该网址发出一个 POST 请求，通常用于跟踪用户的行为。
 
+```html
+<a href="http://localhost:3000/other" ping="http://localhost:3000/log">
+  Go to Other Page
+</a>
+```
+
+上面示例中，用户点击链接时，除了发生跳转，还会向`http://localhost:3000/log`发送一个 POST 请求。服务端收到这个请求以后，就会知道用户点击了这个链接。
+
+这个请求的 HTTP 标头，包含了`ping-from`属性（点击行为发生的页面）和`ping-to`属性（`href`属性所指向的页面）。
+
+```http
+headers: {
+  'ping-from': 'http://localhost:3000/',
+  'ping-to': 'http://localhost:3000/other'
+  'content-type': 'text/ping'
+  // ...other headers
+},
+```
+
+注意，`ping`属性只对链接有效，对其他的交互行为无效，比如按钮点击或表单提交。另外，Firefox 浏览器不支持该属性。并且，也无法让它发送任何的自定义数据。
+
 **（8）type**
 
 `type`属性给出链接 URL 的 MIME 类型，比如到底是网页，还是图像或文件。它也是纯粹提示性的属性，没有实际功能。
