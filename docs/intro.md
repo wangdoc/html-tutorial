@@ -271,13 +271,13 @@ HTML 提供大量属性，用来定制标签的行为，详细介绍请看《元
 
 **（3）http-equiv 属性，content 属性**
 
-`<meta>`标签的`http-equiv`属性用来覆盖 HTTP 回应的头信息字段，`content`属性是对应的字段内容。这两个属性与 HTTP 协议相关，属于高级用法，这里就不详细介绍了。
+`<meta>`标签的`http-equiv`属性用来补充 HTTP 回应的头信息字段，如果服务器发回的 HTTP 回应缺少某个字段，就可以用它补充。`<meta>`标签的`content`属性是对应的字段内容。这两个属性与 HTTP 协议相关，属于高级用法，这里就不详细介绍了。
 
 ```html
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 ```
 
-上面代码可以覆盖 HTTP 回应的`Content-Security-Policy`字段。
+上面代码设定 HTTP 回应的`Content-Security-Policy`字段。
 
 下面是另一些例子。
 
