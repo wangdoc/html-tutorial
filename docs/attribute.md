@@ -160,6 +160,21 @@
 - `rtl`：从右到左阅读，阿拉伯语、波斯语、希伯来语都属于这一类。
 - `auto`：浏览器根据内容的解析结果，自行决定。
 
+### translate
+
+`translate`属性只用于文本元素，用来指示翻译软件，不翻译该文本。
+
+```html
+<p>
+  <span translate="no">Wien<span>
+  named world's most liveable city (again)!
+</p>
+```
+
+上面示例中，`translate="no"`用来告诉翻译软件，不要翻译`<span>`元素内的文本。
+
+如果`translate`设为`yes`，就告诉翻译软件应该翻译该文本。
+
 ### contenteditable
 
 HTML 网页的内容默认是用户不能编辑，`contenteditable`属性允许用户修改内容。它有两个可能的值。
