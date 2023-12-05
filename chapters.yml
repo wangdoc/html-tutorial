@@ -6,7 +6,9 @@
 - text.md: 文本标签
 - list.md: 列表标签
 - image.md: 图像标签
-- link.md: 链接标签
+- a.md: <a>
+- link.md: <link>
+- script.md: <script>，<noscript>
 - multimedia.md: 多媒体标签
 - iframe.md: iframe
 - table.md: 表格
